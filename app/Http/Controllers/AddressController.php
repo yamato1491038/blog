@@ -2,12 +2,20 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use App\Models\Address;
+use Illuminate\Support\Facades\Auth;
 
 class AddressController extends Controller
 {
     public function index(Request $request) {
+
+        if (!(Auth::check())) {
+            // ログインしてなかったらログイン画面へ
+            return view('auth/login');
+        }
+
         $addresses = Address::search()->paginate(15);
         $search_params = $request->only([
             'name',

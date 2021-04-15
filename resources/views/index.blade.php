@@ -11,11 +11,20 @@
 <body>
 <div class="container mx-auto p-5">
   <p class="text-3xl mb-8"><i class="far fa-address-book"></i> 住所録</p>
-
+  <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            {{ Auth::user()->name }}
+            <x-jet-dropdown-link href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                        this.closest('form').submit();">
+                {{ __('Logout') }}
+            </x-jet-dropdown-link>
+  </form>
+        
   <div class="grid grid-cols-5 gap-10">
     <div>
       <p class="text-xl mb-5"><i class="fas fa-search"></i> 検索</p>
-      <form method="GET" action="/">
+      <form method="GET" action="/index">
         <div class="mb-5">
           <label for="name" class="block mb-2 font-bold">名前：</label>
           <input type="text" name="name" id="name" class="shadow appearance-none border rounded w-full py-2 px-3">
