@@ -29,7 +29,10 @@ class AddressController extends Controller
 
 
 
-    
+    public function create(){
+
+        return view('address.create');
+    }
 
     public function csvDownload() {
         $addresses = Address::search()->get();

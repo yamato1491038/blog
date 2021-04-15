@@ -25,8 +25,11 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 // Route::resources(['address' => AddressController::class]);
 
 Route::group(['middleware' => ['auth']], function(){
-    Route::get('/address/index', 'App\Http\Controllers\AddressController@index');
-    Route::get('/address/export', 'App\Http\Controllers\AddressController@csvDownload')->name('export');
+    Route::get('/address/index', 'App\Http\Controllers\AddressController@index')->name('address.index');
+    Route::get('/address/create', 'App\Http\Controllers\AddressController@create')->name('address.create');
+
+
+    Route::get('/address/export', 'App\Http\Controllers\AddressController@csvDownload')->name('address.export');
 });
 
 Auth::routes();
