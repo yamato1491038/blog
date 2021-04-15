@@ -14,12 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/login');
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('/', 'App\Http\Controllers\AddressController@index');
+Route::get('/index', 'App\Http\Controllers\AddressController@index');
 Route::get('/export', 'App\Http\Controllers\AddressController@csvDownload')->name('export');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
