@@ -11,11 +11,6 @@ class AddressController extends Controller
 {
     public function index(Request $request) {
 
-        if (!(Auth::check())) {
-            // ログインしてなかったらログイン画面へ
-            return view('auth/login');
-        }
-
         $addresses = Address::search()->paginate(15);
         $search_params = $request->only([
             'name',
@@ -26,11 +21,15 @@ class AddressController extends Controller
             'phone_number'
         ]);
         
-        return view('index', [
+        return view('address.index', [
             'addresses' => $addresses,
             'search_params' => $search_params
         ]);
     }
+
+
+
+    
 
     public function csvDownload() {
         $addresses = Address::search()->get();
@@ -80,6 +79,6 @@ class AddressController extends Controller
 
     }
 
-    
+
 }
 
