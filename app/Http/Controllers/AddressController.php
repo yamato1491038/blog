@@ -18,7 +18,7 @@ class AddressController extends Controller
             'zip_code',
             'prefecture',
             'city',
-            'address',
+            'town',
             'phone_number'
         ]);
 
@@ -41,17 +41,20 @@ class AddressController extends Controller
 
     public function store(Request $request){
 
-        $input = $request->all();
-        dd($input);
+        $address = new Address;
 
-        $name = $request->input('name');
-        $zip_code = $request->input('zip_code');
-        $prefecture = $request->input('prefecture');
-        $city = $request->input('city');
-        $address = $request->input('address');
-        $phone_number = $request->input('phone_number');
-        $group_id = $request->input('group_id');
 
+        $address->name = $request->input('name');
+        $address->zip_code = $request->input('zip_code');
+        $address->prefecture = $request->input('prefecture');
+        $address->city = $request->input('city');
+        $address->town = $request->input('town');
+        $address->phone_number = $request->input('phone_number');
+        $address->group_id = $request->input('group_id');
+
+        $address->save();
+
+        return view('address.store');
     }
 
 

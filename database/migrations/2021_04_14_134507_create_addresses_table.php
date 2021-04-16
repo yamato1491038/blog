@@ -19,7 +19,7 @@ class CreateAddressesTable extends Migration
             $table->string('zip_code');
             $table->string('prefecture');
             $table->string('city');
-            $table->string('address');
+            $table->string('town');
             $table->string('phone_number');
             $table->timestamps();
         });

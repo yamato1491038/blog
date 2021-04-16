@@ -25,8 +25,8 @@
               </div>
 
               <div class="mb-3">
-              <label for="" class="form-label">郵便番号</label>
-              <input type="text"  class="form-control" id="" name="email" value="" required>
+              <label for="zip_code" class="form-label">郵便番号</label>
+              <input type="text"  class="form-control" id="" name="zip_code" value="" required>
               </div>
 
               <div class="mb-3">
@@ -89,8 +89,8 @@
               </div>
 
               <div class="mb-3">
-                <label for="address" class="form-label">番地</label>
-                <input type="text"  class="form-control" id="address" name="address" value="">
+                <label for="town" class="form-label">番地</label>
+                <input type="text"  class="form-control" id="town" name="town" value="">
               </div>
               
               <div class="mb-3">

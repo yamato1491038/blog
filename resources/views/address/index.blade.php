@@ -28,7 +28,7 @@
   <div class="grid grid-cols-5 gap-10">
     <div>
       <p class="text-xl mb-5"><i class="fas fa-search"></i> 検索</p>
-      <form method="GET" action="/index">
+      <form method="GET" action="/address/index">
         <div class="mb-5">
           <label for="name" class="block mb-2 font-bold">名前：</label>
           <input type="text" name="name" id="name" class="shadow appearance-none border rounded w-full py-2 px-3">
@@ -43,7 +43,7 @@
           <label for="name" class="block mb-2 font-bold">住所：</label>
           <input type="text" name="prefecture" id="name" class="shadow appearance-none border rounded w-full py-2 px-3 mb-2" placeholder="都道府県">
           <input type="text" name="city" id="name" class="shadow appearance-none border rounded w-full py-2 px-3 mb-2" placeholder="市">
-          <input type="text" name="address" id="name" class="shadow appearance-none border rounded w-full py-2 px-3" placeholder="町名・番地">
+          <input type="text" name="town" id="name" class="shadow appearance-none border rounded w-full py-2 px-3" placeholder="町名・番地">
         </div>
 
         <div class="mb-8">
@@ -104,7 +104,7 @@
               {{$address->city}}
             </td>
             <td class="border">
-              {{$address->address}}
+              {{$address->town}}
             </td>
             <td class="border">
               {{$address->phone_number}}
