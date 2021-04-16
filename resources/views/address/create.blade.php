@@ -20,53 +20,92 @@
             <form method="POST" action="{{ route('address.store') }}">
               @csrf
               <div class="mb-3">
-              <label for="your_name" class="form-label">氏名</label>
-              <input type="text" class="form-control" id="your_name" name="your_name" value="" required>
+              <label for="name" class="form-label">氏名</label>
+              <input type="text" class="form-control" id="name" name="name" value="" required>
               </div>
 
               <div class="mb-3">
-              <label for="email" class="form-label">メールアドレス</label>
-              <input type="email"  class="form-control" id="email" name="email" value="" required>
+              <label for="" class="form-label">郵便番号</label>
+              <input type="text"  class="form-control" id="" name="email" value="" required>
               </div>
 
               <div class="mb-3">
-              <label for="url" class="form-label">ホームページ</label>
-              <input type="url"  class="form-control" id="url" name="url" value="">
-              </div>
-
-              <div class="mb-3">
-                <label for="gender" class="form-label">性別</label>
-                  <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" id="gender1" name="gender" value="0">
-                  <label class="form-check-label" for="gender1">男性</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" id="gender2" name="gender" value="1">
-                    <label class="form-check-label" for="gender2">女性</label>
-                  </div>
-              </div>
-
-              <div class="mb-3">
-                <label for="age" class="form-label">年齢</label>
-                  <select  class="form-select"name="age">
+                <label for="prefecture" class="form-label">都道府県</label>
+                  <select  class="form-select"name="prefecture">
                     <option value="">選択してください</option>
-                    <option value="1">～19歳</option>
-                    <option value="2">20～29歳</option>
-                    <option value="3">30～39歳</option>
-                    <option value="4">40～49歳</option>
-                    <option value="5">50～59歳</option>
-                    <option value="6">60歳～</option>
+                    <option value="1">北海道</option>
+                    <option value="2">青森県</option>
+                    <option value="3">岩手県</option>
+                    <option value="4">宮城県</option>
+                    <option value="5">秋田県</option>
+                    <option value="6">山形県</option>
+                    <option value="7">福島県</option>
+                    <option value="8">茨城県</option>
+                    <option value="9">栃木県</option>
+                    <option value="10">群馬県</option>
+                    <option value="11">埼玉県</option>
+                    <option value="12">千葉県</option>
+                    <option value="13">東京都</option>
+                    <option value="14">神奈川県</option>
+                    <option value="15">新潟県</option>
+                    <option value="16">富山県</option>
+                    <option value="17">石川県</option>
+                    <option value="18">福井県</option>
+                    <option value="19">山梨県</option>
+                    <option value="20">長野県</option>
+                    <option value="21">岐阜県</option>
+                    <option value="22">静岡県</option>
+                    <option value="23">愛知県</option>
+                    <option value="24">三重県</option>
+                    <option value="25">滋賀県</option>
+                    <option value="26">京都府</option>
+                    <option value="27">大阪府</option>
+                    <option value="28">兵庫県</option>
+                    <option value="29">奈良県</option>
+                    <option value="30">和歌山県</option>
+                    <option value="31">鳥取県</option>
+                    <option value="32">島根県</option>
+                    <option value="33">岡山県</option>
+                    <option value="34">広島県</option>
+                    <option value="35">山口県</option>
+                    <option value="36">徳島県</option>
+                    <option value="37">香川県</option>
+                    <option value="38">愛媛県</option>
+                    <option value="39">高知県</option>
+                    <option value="40">福岡県</option>
+                    <option value="41">佐賀県</option>
+                    <option value="42">長崎県</option>
+                    <option value="43">熊本県</option>
+                    <option value="44">大分県</option>
+                    <option value="45">宮崎県</option>
+                    <option value="46">鹿児島県</option>
+                    <option value="47">沖縄県</option>
                   </select>
               </div>
 
               <div class="mb-3">
-                <label for="contact" class="form-label">お問い合わせ内容</label>
-                <textarea class="form-control" id="contact" rows="3" name="contact"></textarea>
+                <label for="city" class="form-label">市・町</label>
+                <input type="text"  class="form-control" id="city" name="city" value="">
               </div>
 
               <div class="mb-3">
-                <input type="checkbox" class="form-check-input" name="caution" value="1"id="caution">
-                <label class="form-check-label" for="caution">注意事項にチェックする</label>
+                <label for="address" class="form-label">番地</label>
+                <input type="text"  class="form-control" id="address" name="address" value="">
+              </div>
+              
+              <div class="mb-3">
+                <label for="phone_number" class="form-label">電話番号</label>
+                <input type="text"  class="form-control" id="phone_number" name="phone_number" value="">
+              </div>
+
+              <div class="mb-3">
+                <label for="group_id" class="form-label">職業</label>
+                  <select  class="form-select"name="group_id">
+                    <option value="">選択してください</option>
+                    @foreach($groups as $group)
+                      <option value="{{ $group->id }}">{{$group->name}}</option>
+                    @endforeach
+                  </select>
                 </div>
 
               <input class="btn btn-info" type="submit" name="btn_confirm" value="確認する">

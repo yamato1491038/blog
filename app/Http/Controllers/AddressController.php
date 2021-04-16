@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Address;
+use App\Models\Group;
 use Illuminate\Support\Facades\Auth;
 
 class AddressController extends Controller
@@ -32,16 +33,25 @@ class AddressController extends Controller
 
     public function create(){
 
-        return view('address.create');
+        $groups = Group::all();
+
+        return view('address.create', ['groups' => $groups]);
     }
 
 
     public function store(Request $request){
 
-        dd($request);
         $input = $request->all();
-        
-        return view('address.store');
+        dd($input);
+
+        $name = $request->input('name');
+        $zip_code = $request->input('zip_code');
+        $prefecture = $request->input('prefecture');
+        $city = $request->input('city');
+        $address = $request->input('address');
+        $phone_number = $request->input('phone_number');
+        $group_id = $request->input('group_id');
+
     }
 
 
