@@ -20,6 +20,7 @@ class AddressController extends Controller
             'address',
             'phone_number'
         ]);
+
         
         return view('address.index', [
             'addresses' => $addresses,
@@ -33,6 +34,17 @@ class AddressController extends Controller
 
         return view('address.create');
     }
+
+
+    public function store(Request $request){
+
+        dd($request);
+        $input = $request->all();
+        
+        return view('address.store');
+    }
+
+
 
     public function csvDownload() {
         $addresses = Address::search()->get();

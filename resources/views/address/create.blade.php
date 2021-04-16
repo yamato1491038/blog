@@ -1,4 +1,3 @@
-createです
 <!doctype html>
 <html lang="en">
   <head>
@@ -18,30 +17,31 @@ createです
         <div class="card">
           <div class="card-header">情報登録</div>
           <div class='card-body'>
-            <form method="POST" action="input2.php">
+            <form method="POST" action="{{ route('address.store') }}">
+              @csrf
               <div class="mb-3">
               <label for="your_name" class="form-label">氏名</label>
-              <input type="text" class="form-control" id="your_name" name="your_name" value="<?php if(!empty($_POST['your_name'] ))echo h($_POST['your_name']) ; ?>" required>
+              <input type="text" class="form-control" id="your_name" name="your_name" value="" required>
               </div>
 
               <div class="mb-3">
               <label for="email" class="form-label">メールアドレス</label>
-              <input type="email"  class="form-control" id="email" name="email" value="<?php  if(!empty($_POST['email'] ))echo h($_POST['email']) ; ?>" required>
+              <input type="email"  class="form-control" id="email" name="email" value="" required>
               </div>
 
               <div class="mb-3">
               <label for="url" class="form-label">ホームページ</label>
-              <input type="url"  class="form-control" id="url" name="url" value="<?php  if(!empty($_POST['url'] ))echo h($_POST['url']) ; ?>">
+              <input type="url"  class="form-control" id="url" name="url" value="">
               </div>
 
               <div class="mb-3">
                 <label for="gender" class="form-label">性別</label>
                   <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" id="gender1" name="gender" value="0"<?php  if(!empty($_POST['gender']) && $_POST['gender'] === '0'){ echo 'checked'; } ?>>
+                  <input class="form-check-input" type="radio" id="gender1" name="gender" value="0">
                   <label class="form-check-label" for="gender1">男性</label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" id="gender2" name="gender" value="1"<?php  if(!empty($_POST['gender']) && $_POST['gender'] === '1'){ echo 'checked'; } ?>>
+                    <input class="form-check-input" type="radio" id="gender2" name="gender" value="1">
                     <label class="form-check-label" for="gender2">女性</label>
                   </div>
               </div>
@@ -61,7 +61,7 @@ createです
 
               <div class="mb-3">
                 <label for="contact" class="form-label">お問い合わせ内容</label>
-                <textarea class="form-control" id="contact" rows="3" name="contact"><?php  if(!empty($_POST['contact'] ))echo h($_POST['contact']) ; ?></textarea>
+                <textarea class="form-control" id="contact" rows="3" name="contact"></textarea>
               </div>
 
               <div class="mb-3">

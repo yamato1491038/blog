@@ -10,7 +10,11 @@
 
 <body>
 <div class="container mx-auto p-5">
-  <p class="text-3xl mb-8"><i class="far fa-address-book"></i> 住所録</p>
+  <p class="text-3xl mb-8"><i class="far fa-address-book"></i> 
+    住所録
+    <a href="{{ route('address.create') }}" class="ml-4 text-sm text-gray-700 underline">情報登録</a>
+  </p>
+  
   <form method="POST" action="{{ route('logout') }}">
             @csrf
             {{ Auth::user()->name }}
