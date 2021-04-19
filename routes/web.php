@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+// use App\Http\Controllers\AddressController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,8 +22,16 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('/index', 'App\Http\Controllers\AddressController@index');
-Route::get('/export', 'App\Http\Controllers\AddressController@csvDownload')->name('export');
+// Route::resources(['address' => AddressController::class]);
+
+Route::group(['middleware' => ['auth']], function(){
+    Route::get('/address/index', 'App\Http\Controllers\AddressController@index')->name('address.index');
+    Route::get('/address/create', 'App\Http\Controllers\AddressController@create')->name('address.create');
+    Route::post('/address/store', 'App\Http\Controllers\AddressController@store')->name('address.store');
+
+    Route::get('/address/export', 'App\Http\Controllers\AddressController@csvDownload')->name('address.export');
+});
+
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'address/index']);

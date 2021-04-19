@@ -5,32 +5,65 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Address;
+use App\Models\Group;
 use Illuminate\Support\Facades\Auth;
 
 class AddressController extends Controller
 {
     public function index(Request $request) {
 
-        if (!(Auth::check())) {
-            // ログインしてなかったらログイン画面へ
-            return view('auth/login');
-        }
-
+        $prefs = config('pref');
         $addresses = Address::search()->paginate(15);
         $search_params = $request->only([
             'name',
             'zip_code',
             'prefecture',
             'city',
-            'address',
-            'phone_number'
+            'town',
+            'phone_number',
+            'prefs' => $prefs
         ]);
+
         
-        return view('index', [
+        return view('address.index', [
+            'prefs' => $prefs,
             'addresses' => $addresses,
             'search_params' => $search_params
         ]);
     }
+
+
+
+    public function create(){
+
+        $prefs = config('pref');
+        $groups = Group::all();
+
+        return view('address.create', [
+            'prefs' => $prefs,
+            'groups' => $groups
+            ]);
+    }
+
+
+    public function store(Request $request){
+
+        $address = new Address;
+
+        $address->name = $request->input('name');
+        $address->zip_code = $request->input('zip_code');
+        $address->prefecture = $request->input('prefecture');
+        $address->city = $request->input('city');
+        $address->town = $request->input('town');
+        $address->phone_number = $request->input('phone_number');
+        $address->group_id = $request->input('group_id');
+
+        $address->save();
+
+        return view('address.store');
+    }
+
+
 
     public function csvDownload() {
         $addresses = Address::search()->get();
@@ -79,5 +112,7 @@ class AddressController extends Controller
         return response()->stream($callback, 200, $headers);
 
     }
+
+
 }
 

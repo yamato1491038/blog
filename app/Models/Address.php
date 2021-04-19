@@ -9,6 +9,10 @@ class Address extends Model
 {
     use HasFactory;
 
+    public function address(){
+        return $this->belongsTo('App\Models\Address');
+    }
+
     public function scopeSearch($query) {
 
         $request = request();
@@ -25,8 +29,8 @@ class Address extends Model
         ->when($request->city, function($q, $city) {
             $q->where('city', 'LIKE', '%' . $city . '%');
         })
-        ->when($request->address, function($q, $address) {
-            $q->where('address', 'LIKE', '%' . $address . '%');
+        ->when($request->town, function($q, $town) {
+            $q->where('town', 'LIKE', '%' . $town . '%');
         })
         ->when($request->phone_number, function($q, $phone_number) {
             $q->where('phone_number', 'LIKE', '%' . $phone_number . '%');

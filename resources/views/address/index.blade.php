@@ -10,7 +10,11 @@
 
 <body>
 <div class="container mx-auto p-5">
-  <p class="text-3xl mb-8"><i class="far fa-address-book"></i> 住所録</p>
+  <p class="text-3xl mb-8"><i class="far fa-address-book"></i> 
+    住所録
+    <a href="{{ route('address.create') }}" class="ml-4 text-sm text-gray-700 underline">情報登録</a>
+  </p>
+  
   <form method="POST" action="{{ route('logout') }}">
             @csrf
             {{ Auth::user()->name }}
@@ -24,7 +28,7 @@
   <div class="grid grid-cols-5 gap-10">
     <div>
       <p class="text-xl mb-5"><i class="fas fa-search"></i> 検索</p>
-      <form method="GET" action="/index">
+      <form method="GET" action="/address/index">
         <div class="mb-5">
           <label for="name" class="block mb-2 font-bold">名前：</label>
           <input type="text" name="name" id="name" class="shadow appearance-none border rounded w-full py-2 px-3">
@@ -39,7 +43,7 @@
           <label for="name" class="block mb-2 font-bold">住所：</label>
           <input type="text" name="prefecture" id="name" class="shadow appearance-none border rounded w-full py-2 px-3 mb-2" placeholder="都道府県">
           <input type="text" name="city" id="name" class="shadow appearance-none border rounded w-full py-2 px-3 mb-2" placeholder="市">
-          <input type="text" name="address" id="name" class="shadow appearance-none border rounded w-full py-2 px-3" placeholder="町名・番地">
+          <input type="text" name="town" id="name" class="shadow appearance-none border rounded w-full py-2 px-3" placeholder="町名・番地">
         </div>
 
         <div class="mb-8">
@@ -94,13 +98,13 @@
               {{$address->zip_code}}
             </td>
             <td class="border">
-              {{$address->prefecture}}
+              {{ $prefs[$address->prefecture] }}
             </td>
             <td class="border">
               {{$address->city}}
             </td>
             <td class="border">
-              {{$address->address}}
+              {{$address->town}}
             </td>
             <td class="border">
               {{$address->phone_number}}
@@ -115,7 +119,7 @@
       </div>
 
       <div class="flex justify-center mt-10">
-      <form method="GET" action="{{ route('export') }}">
+      <form method="GET" action="{{ route('address.export') }}">
         @foreach($search_params as $key => $value)
           <input type="hidden" name="{{ $key }}" value="{{ $value }}">
         @endforeach
