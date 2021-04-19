@@ -24,7 +24,13 @@
         <div class="col">
           {{ Auth::user()->name }}
         </div>
-        <div class="col"></div>
+        <div class="col">
+          <form method="post" action="{{ route('my_image.upload') }}"enctype="multipart/form-data">
+            @csrf
+            <input type="file" name="image" accept="image/png, image/jpeg">
+            <input type="submit" value="画像投稿">
+          </form>
+        </div>
         <div class="col">
           <form method="POST" action="{{ route('logout') }}">
             @csrf

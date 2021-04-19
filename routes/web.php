@@ -29,6 +29,8 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/address/create', 'App\Http\Controllers\AddressController@create')->name('address.create');
     Route::post('/address/store', 'App\Http\Controllers\AddressController@store')->name('address.store');
 
+    Route::post('/upload', 'App\Http\Controllers\MyImageController@upload')->name('my_image.upload');
+
     Route::get('/address/export', 'App\Http\Controllers\AddressController@csvDownload')->name('address.export');
 });
 
