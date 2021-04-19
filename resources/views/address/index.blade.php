@@ -98,7 +98,7 @@
               {{$address->zip_code}}
             </td>
             <td class="border">
-              {{$address->prefecture}}
+              {{ $prefs[$address->prefecture] }}
             </td>
             <td class="border">
               {{$address->city}}

@@ -12,6 +12,7 @@ class AddressController extends Controller
 {
     public function index(Request $request) {
 
+        $prefs = config('pref');
         $addresses = Address::search()->paginate(15);
         $search_params = $request->only([
             'name',
@@ -19,11 +20,13 @@ class AddressController extends Controller
             'prefecture',
             'city',
             'town',
-            'phone_number'
+            'phone_number',
+            'prefs' => $prefs
         ]);
 
         
         return view('address.index', [
+            'prefs' => $prefs,
             'addresses' => $addresses,
             'search_params' => $search_params
         ]);
@@ -33,16 +36,19 @@ class AddressController extends Controller
 
     public function create(){
 
+        $prefs = config('pref');
         $groups = Group::all();
 
-        return view('address.create', ['groups' => $groups]);
+        return view('address.create', [
+            'prefs' => $prefs,
+            'groups' => $groups
+            ]);
     }
 
 
     public function store(Request $request){
 
         $address = new Address;
-
 
         $address->name = $request->input('name');
         $address->zip_code = $request->input('zip_code');
