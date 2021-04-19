@@ -10,6 +10,10 @@ class MyImage extends Model
     use HasFactory;
 
     protected $table = "my_images";
-    protected $fillable = ["file_name", "file_path" ];
+    protected $fillable = ["file_name", "file_path", "user_id"];
+
+    public function user(){
+        return $this->hasOne('App\Models\User');
+    }
 
 }

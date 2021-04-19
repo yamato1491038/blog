@@ -13,6 +13,7 @@ class MyImageController extends Controller
             'image' => 'required|file|image|mimes:png,jpeg'
         ]);
         $upload_image = $request->file('image');
+        $user_id = $request->input('user_id');
 
         if($upload_image) {
 
@@ -20,7 +21,8 @@ class MyImageController extends Controller
             if($path){
                 MyImage::create([
                     "file_name" => $upload_image->getClientOriginalName(),
-                    "file_path" => $path
+                    "file_path" => $path,
+                    "user_id" => $user_id
                 ]);
             }
         }

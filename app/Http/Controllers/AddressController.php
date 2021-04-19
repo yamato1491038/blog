@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Address;
 use App\Models\Group;
 use Illuminate\Support\Facades\Auth;
+use App\Models\MyImage;
 
 class AddressController extends Controller
 {
@@ -24,14 +25,19 @@ class AddressController extends Controller
             'prefs' => $prefs
         ]);
 
+        // 画像取得
+        $user_id = Auth::id();
+        $my_image = MyImage::find($user_id);
+
         
         return view('address.index', [
             'prefs' => $prefs,
             'addresses' => $addresses,
-            'search_params' => $search_params
+            'search_params' => $search_params,
+            'my_image' => $my_image
         ]);
     }
-    
+
 
 
 

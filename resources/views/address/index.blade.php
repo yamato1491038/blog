@@ -25,9 +25,13 @@
           {{ Auth::user()->name }}
         </div>
         <div class="col">
+          <div style="width: 30px">
+            <img src="{{ Storage::url($my_image->file_path) }}" style="width:100%;"/>
+          </div>
           <form method="post" action="{{ route('my_image.upload') }}"enctype="multipart/form-data">
             @csrf
             <input type="file" name="image" accept="image/png, image/jpeg">
+            <input type="hidden" name="user_id" value="{{ Auth::id() }}">
             <input type="submit" value="画像投稿">
           </form>
         </div>

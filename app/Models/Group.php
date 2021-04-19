@@ -9,7 +9,7 @@ class Group extends Model
 {
     use HasFactory;
 
-    public function groups(){
-        return $this->hasMany('App\Models\Group');
+    public function address(){
+        return $this->belongsTo('App\Models\Address');
     }
 }
