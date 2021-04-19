@@ -64,7 +64,7 @@
                   </select>
                 </div>
 
-              <input class="btn btn-info" type="submit" name="btn_confirm" value="確認する">
+              <input class="btn btn-info" type="submit" name="btn_confirm" value="登録する">
             </form>
           </div>
         </div>
