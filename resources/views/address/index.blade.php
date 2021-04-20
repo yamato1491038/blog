@@ -27,7 +27,7 @@
           {{ Auth::user()->name }}
           </a>
           <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-            <li><a class="dropdown-item" href="{{ route('profile.show') }}">マイページ</a>
+            <li><a class="dropdown-item" href="{{ route('my_image.show') }}">マイページ</a>
             <li><form method="POST" name="form1" action="{{ route('logout') }}">
                   @csrf
                   <a class="dropdown-item" href="javascript:form1.submit()">ログアウト</a>

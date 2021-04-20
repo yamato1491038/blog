@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\MyImage;
+use App\Models\User;
 
 class MyImageController extends Controller
 {
@@ -11,7 +13,12 @@ class MyImageController extends Controller
 
         $user_id = Auth::id();
         $user_info = User::find($user_id);
-        $my_image = MyImage::find($user_id);
+        $my_image = MyImage::where('user_id', $user_id)->first();
+
+        return view('my_image.show', [
+            'user_info' => $user_info,
+            'my_image' => $my_image
+        ]);
     }
 
 
