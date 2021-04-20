@@ -7,7 +7,17 @@ use App\Models\MyImage;
 
 class MyImageController extends Controller
 {
-    function upload(Request $request){
+    public function show(){
+
+        $user_id = Auth::id();
+        $user_info = User::find($user_id);
+        $my_image = MyImage::find($user_id);
+    }
+
+
+
+
+    public function upload(Request $request){
         
         $request->validate([
             'image' => 'required|file|image|mimes:png,jpeg'

@@ -13,7 +13,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">住所録</a>
+    <a class="navbar-brand" href="{{ route('address.index') }}">住所録</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -27,10 +27,7 @@
           {{ Auth::user()->name }}
           </a>
           <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-            <li><a class="dropdown-item" href="#">
-                  プロフ画像変更
-                </a>
-                </li>
+            <li><a class="dropdown-item" href="{{ route('profile.show') }}">マイページ</a>
             <li><form method="POST" name="form1" action="{{ route('logout') }}">
                   @csrf
                   <a class="dropdown-item" href="javascript:form1.submit()">ログアウト</a>

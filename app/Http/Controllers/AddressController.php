@@ -28,7 +28,7 @@ class AddressController extends Controller
 
         // ログインユーザーの画像取得
         $user_id = Auth::id();
-        $my_image = MyImage::find($user_id);
+        $my_image = MyImage::where('user_id', $user_id)->first();
         
         return view('address.index', [
             'prefs' => $prefs,
