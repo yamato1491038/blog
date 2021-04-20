@@ -11,43 +11,40 @@
 </head>
 
 <body>
-<div class="container mx-auto p-5">
-  <div class="row">
-    <div class="col-8">
-      <p class="text-3xl mb-8"><i class="far fa-address-book"></i> 
-        住所録
-        <a href="{{ route('address.create') }}" class="ml-4 text-sm text-gray-700 underline">情報登録</a>
-      </p>
-    </div>
-    <div class="col">
-      <div class="row">
-        <div class="col">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">住所録</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+      <ul class="navbar-nav">
+        <div style="width: 30px">
+            <img src="{{ Storage::url($my_image->file_path) }}" style="width:100%;" />
+        </div>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           {{ Auth::user()->name }}
-        </div>
-        <div class="col">
-          <div style="width: 30px">
-            <img src="{{ Storage::url($my_image->file_path) }}" style="width:100%;"/>
-          </div>
-          <form method="post" action="{{ route('my_image.upload') }}"enctype="multipart/form-data">
-            @csrf
-            <input type="file" name="image" accept="image/png, image/jpeg">
-            <input type="hidden" name="user_id" value="{{ Auth::id() }}">
-            <input type="submit" value="画像投稿">
-          </form>
-        </div>
-        <div class="col">
-          <form method="POST" action="{{ route('logout') }}">
-            @csrf
-            <x-jet-dropdown-link href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
-                        this.closest('form').submit();">
-                {{ __('Logout') }}
-            </x-jet-dropdown-link>
-          </form>
-        </div>
-      </div>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+            <li><a class="dropdown-item" href="#">
+                  プロフ画像変更
+                </a>
+                </li>
+            <li><form method="POST" name="form1" action="{{ route('logout') }}">
+                  @csrf
+                  <a class="dropdown-item" href="javascript:form1.submit()">ログアウト</a>
+                </form>
+            </li>
+          </ul>
+        </li>
+      </ul>
     </div>
   </div>
+</nav>
+<div class="container mx-auto p-5">
+  <a href="{{ route('address.create') }}" class="ml-4 text-sm text-gray-700 underline">情報登録</a>
+
   <div class="row">
     <div class="col-2">
       <div>

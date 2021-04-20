@@ -15,6 +15,8 @@ class AddressController extends Controller
 
         $prefs = config('pref');
         $addresses = Address::search()->paginate(15);
+
+        // ファイル出力のための値
         $search_params = $request->only([
             'name',
             'zip_code',
@@ -22,7 +24,6 @@ class AddressController extends Controller
             'city',
             'town',
             'phone_number',
-            'prefs' => $prefs
         ]);
 
         // ログインユーザーの画像取得
