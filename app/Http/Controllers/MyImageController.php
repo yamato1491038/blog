@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+
 use App\Models\MyImage;
 use App\Models\User;
+
 
 class MyImageController extends Controller
 {
@@ -34,10 +37,6 @@ class MyImageController extends Controller
 
         $check_image_exist = MyImage::where('user_id', $user_id)->first();
 
-        // $check_image_exist = MyImage::where('user_id', 2)->first();
-
-        dd(empty($check_image_exist));
-
         // 画像がなければ新規登録
         if(empty($check_image_exist)){
 
@@ -53,6 +52,27 @@ class MyImageController extends Controller
                 }
             }
         }
-        return redirect("address/index");
+
+        if(!empty($check_image_exist)){
+
+            if($upload_image) {
+
+                // もともとのpublicにある画像削除
+                Storage::delete('/public/' . $check_image_exist->file_path);
+
+                $path = $upload_image->store('uploads', "public");
+
+                if($path){
+
+                    // DBへの書き換え
+                    $check_image_exist->file_name = $upload_image->getClientOriginalName();
+                    $check_image_exist->file_path = $path;
+            
+                    $check_image_exist->save();
+                }
+            }
+        }
+
+        return redirect("my_image/show");
     }
 }
