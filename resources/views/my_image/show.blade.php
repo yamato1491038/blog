@@ -49,6 +49,12 @@
                     <img src="{{ Storage::url($my_image->file_path) }}" style="height: 100%;" class="rounded-circle"/>
                     <div class="low-image_text">
                       変更
+                      <form method="post" action="{{ route('my_image.upload') }}" enctype="multipart/form-data">
+                        @csrf
+                        <input type="file" name="image" accept="image/png, image/jpeg">
+                        <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+                        <input type="submit" value="Upload">
+                      </form>
                     </div>
                   </div>
                 </td>

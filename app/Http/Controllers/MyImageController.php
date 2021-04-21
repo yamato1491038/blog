@@ -32,15 +32,25 @@ class MyImageController extends Controller
         $upload_image = $request->file('image');
         $user_id = $request->input('user_id');
 
-        if($upload_image) {
+        $check_image_exist = MyImage::where('user_id', $user_id)->first();
 
-            $path = $upload_image->store('uploads', "public");
-            if($path){
-                MyImage::create([
-                    "file_name" => $upload_image->getClientOriginalName(),
-                    "file_path" => $path,
-                    "user_id" => $user_id
-                ]);
+        // $check_image_exist = MyImage::where('user_id', 2)->first();
+
+        dd(empty($check_image_exist));
+
+        // 画像がなければ新規登録
+        if(empty($check_image_exist)){
+
+            if($upload_image) {
+
+                $path = $upload_image->store('uploads', "public");
+                if($path){
+                    MyImage::create([
+                        "file_name" => $upload_image->getClientOriginalName(),
+                        "file_path" => $path,
+                        "user_id" => $user_id
+                    ]);
+                }
             }
         }
         return redirect("address/index");
