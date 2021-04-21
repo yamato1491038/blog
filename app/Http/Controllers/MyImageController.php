@@ -53,6 +53,7 @@ class MyImageController extends Controller
             }
         }
 
+        // 元々の画像あれば更新
         if(!empty($check_image_exist)){
 
             if($upload_image) {
