@@ -7,60 +7,67 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-
-  
+    <link rel="stylesheet" href="{{ asset('css/my_page.css') }}">
   </head>
-<body>
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <div class="card">
-          <div class="card-header">情報登録</div>
-          <div class='card-body'>
-            <form method="POST" action="{{ route('address.store') }}">
-              @csrf
-              <div class="mb-3">
-              <label for="name" class="form-label">氏名</label>
-              <input type="text" class="form-control" id="name" name="name" value="" required>
-              </div>
-
-              <div class="mb-3">
-              <label for="zip_code" class="form-label">郵便番号</label>
-              <input type="text"  class="form-control" id="" name="zip_code" value="" required>
-              </div>
-
-              <div class="mb-3">
-                <label for="prefecture" class="form-label">都道府県</label>
-                  
-              </div>
-
-              <div class="mb-3">
-                <label for="city" class="form-label">市・町</label>
-                <input type="text"  class="form-control" id="city" name="city" value="">
-              </div>
-
-              <div class="mb-3">
-                <label for="town" class="form-label">番地</label>
-                <input type="text"  class="form-control" id="town" name="town" value="">
-              </div>
-              
-              <div class="mb-3">
-                <label for="phone_number" class="form-label">電話番号</label>
-                <input type="text"  class="form-control" id="phone_number" name="phone_number" value="">
-              </div>
-
-              <div class="mb-3">
-                <label for="group_id" class="form-label">職業</label>
-                  
-                </div>
-
-              <input class="btn btn-info" type="submit" name="btn_confirm" value="登録する">
-            </form>
+  <body>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">
+                  <div class="low-title">
+                    マイページ
+                  </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">名前</th>
+                <td>
+                  <div class="low-style">
+                    {{ $user_info->name }}
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">メールアドレス</th>
+                <td>
+                  <div class="low-style">
+                    {{ $user_info->email }}
+                  </div>
+                </td>
+                
+              </tr>
+              <tr>
+                <th scope="row">プロフ画像</th>
+                <td>
+                  <div class="low-image">
+                    <img src="{{ Storage::url($my_image->file_path) }}" style="height: 100%;" class="rounded-circle"/>
+                    <div class="low-image_text">
+                      変更
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">パスワード等詳細変更</th>
+                <td>
+                  <div class="low-style">
+                  <a href="{{ route('profile.show') }}" class="btn btn-outline-info" role="button">変更</a>
+                  </div>
+                </td>
+                
+              </tr>
+            </tbody>
+          </table>
           </div>
-        </div>
-      </div><!-- .col-md-6 --> 
+        </div><!-- .col-md-6 --> 
+      </div>
     </div>
-  </div>
 
   <!-- Optional JavaScript; choose one of the two! -->
 
