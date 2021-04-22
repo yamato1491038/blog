@@ -2,7 +2,7 @@ $(function(){
 
   // 画像入れ替え関数
   function appendImage(url){
-    let childHtml = `<img src="${url}" style="height: 100%;" class="rounded-circle"/>`;
+    let childHtml = `<img src="${url}" style="height: 100%;"/>`;
     $('.image-container').append(childHtml);
   }
 
@@ -13,7 +13,7 @@ $(function(){
     // ログインユーザーID取得
     const userId = $('.id-file').data('uid');
 
-    // フォームデータに追加
+    // フォームデータ作成し追加
     const fd = new FormData();
     fd.append('file', file);
     fd.append('user_id', userId);
@@ -29,10 +29,10 @@ $(function(){
       contentType: false,
       processData: false,
     }).done(function(image_url) {
+      // jsonデータからurlを取得
       var src_url = image_url.url;
-      console.log(src_url);
-          //通信成功
-          $('.image-container').children().remove();
+          //イメージタグのみ削除
+          $('.image-container').children('img').remove();
           appendImage(src_url);
     }).fail(function(){
           //通信失敗

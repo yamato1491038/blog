@@ -12,7 +12,6 @@
 
     <!-- JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="{{ asset('/js/image_upload.js') }}"></script>
 
   </head>
@@ -52,8 +51,11 @@
                 <th scope="row">プロフ画像</th>
                 <td>
                   <label for="image_upload">
-                    <div class="low-image image-container">
-                      <img src="{{ Storage::url($my_image->file_path) }}" style="height: 100%;" class="rounded-circle"/>
+                    <div class="low-image image-container rounded-circle">
+                      <img src="{{ Storage::url($my_image->file_path) }}" style="height: 100%;"/>
+                      <div class="mask">
+                        <div class="caption">編集</div>
+                      </div>
                     </div>
                   </label>
                     <form method="post" action="{{ route('my_image.upload') }}" enctype="multipart/form-data" style="display: none;" id="image-box">
