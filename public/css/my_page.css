@@ -4,15 +4,17 @@
 }
 
 .low-style{
-
+  font-size: large;
   padding: 20px;
-  text-align: center;
+  
 }
 
 .low-image{
   
   height: 200px;
+  width: 200px;
   text-align: center;
+  object-fit: cover;
 }
 
 .image-container {

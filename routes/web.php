@@ -14,9 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('auth/login');
-});
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
@@ -25,6 +23,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 // Route::resources(['address' => AddressController::class]);
 
 Route::group(['middleware' => ['auth']], function(){
+    Route::get('/', 'App\Http\Controllers\AddressController@index')->name('address.index');
     Route::get('/address/index', 'App\Http\Controllers\AddressController@index')->name('address.index');
     Route::get('/address/create', 'App\Http\Controllers\AddressController@create')->name('address.create');
     Route::post('/address/store', 'App\Http\Controllers\AddressController@store')->name('address.store');
@@ -33,8 +32,10 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('/my_image/upload', 'App\Http\Controllers\MyImageController@upload')->name('my_image.upload');
 
     Route::get('/address/export', 'App\Http\Controllers\AddressController@csvDownload')->name('address.export');
+
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'address/index']);
 });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'address/index']);
+

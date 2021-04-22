@@ -50,7 +50,7 @@
               <tr>
                 <th scope="row">プロフ画像</th>
                 <td>
-                  <label for="image_upload">
+                  <label for="image_upload" class="low-style">
                     <div class="low-image image-container rounded-circle">
                       <img src="{{ Storage::url($my_image->file_path) }}" style="height: 100%;"/>
                       <div class="mask">
@@ -73,7 +73,13 @@
                   <a href="{{ route('profile.show') }}" class="btn btn-outline-info" role="button">変更</a>
                   </div>
                 </td>
-                
+              <tr>
+                <th scope="row"></th>
+                <td>
+                  <div class="low-style">
+                  <a href="{{ route('address.index') }}" class="btn btn-secondary" role="button">戻る</a>
+                  </div>
+                </td>
               </tr>
             </tbody>
           </table>
