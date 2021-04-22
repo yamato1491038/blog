@@ -29,7 +29,7 @@ class MyImageController extends Controller
 
     public function upload(Request $request){
 
-        
+    // ajax通信用
         
         $request->validate([
             'file' => 'required|file|image|mimes:png,jpeg'
@@ -74,10 +74,14 @@ class MyImageController extends Controller
                     $check_image_exist->file_path = $path;
             
                     $check_image_exist->save();
+
                 }
             }
         }
 
-        return response()->json($check_image_exist);
+        // 表示用にパス取得
+        $image_url = Storage::url($path);
+
+        return response()->json(["url"=> $image_url]);
     }
 }

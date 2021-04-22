@@ -12,6 +12,7 @@
 
     <!-- JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="{{ asset('/js/image_upload.js') }}"></script>
 
   </head>
@@ -46,39 +47,21 @@
                     {{ $user_info->email }}
                   </div>
                 </td>
-                
               </tr>
               <tr>
                 <th scope="row">プロフ画像</th>
                 <td>
-                  <div class="low-image">
-                    <img src="{{ Storage::url($my_image->file_path) }}" data-bs-toggle="modal" data-bs-target="#exampleModal" style="height: 100%;" class="rounded-circle"/>
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                          </div>
-                          <div class="modal-body" id="image-box">
-                          <form method="post" action="{{ route('my_image.upload') }}" enctype="multipart/form-data">
-                            @csrf
-                            <input class="image-file" type="file" name="image" accept="image/png, image/jpeg">
-                            <input class="id-file" type="hidden" data-uid="{{ Auth::id() }}" name="user_id" value="{{ Auth::id() }}">
-                            
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            
-                            <input type="submit" class="btn btn-primary" value="Upload">
-                          </form>
-                          </div>
-                        </div>
-                      </div>
+                  <label for="image_upload">
+                    <div class="low-image image-container">
+                      <img src="{{ Storage::url($my_image->file_path) }}" style="height: 100%;" class="rounded-circle"/>
                     </div>
-                  </div>
+                  </label>
+                    <form method="post" action="{{ route('my_image.upload') }}" enctype="multipart/form-data" style="display: none;" id="image-box">
+                      @csrf
+                      <input class="image-file" type="file" name="image" accept="image/png, image/jpeg" id="image_upload">
+                      <input class="id-file" type="hidden" data-uid="{{ Auth::id() }}" name="user_id" value="{{ Auth::id() }}">
+                      <input type="submit" class="btn btn-primary" value="Upload">
+                    </form>
                 </td>
               </tr>
               <tr>
