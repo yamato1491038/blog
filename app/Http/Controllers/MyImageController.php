@@ -28,14 +28,18 @@ class MyImageController extends Controller
 
 
     public function upload(Request $request){
+
+        
         
         $request->validate([
-            'image' => 'required|file|image|mimes:png,jpeg'
+            'file' => 'required|file|image|mimes:png,jpeg'
         ]);
-        $upload_image = $request->file('image');
+        $upload_image = $request->file('file');
         $user_id = $request->input('user_id');
 
         $check_image_exist = MyImage::where('user_id', $user_id)->first();
+        $file_name = $upload_image->getClientOriginalName();
+
 
         // 画像がなければ新規登録
         if(empty($check_image_exist)){
@@ -74,6 +78,6 @@ class MyImageController extends Controller
             }
         }
 
-        return redirect("my_image/show");
+        return response()->json($check_image_exist);
     }
 }

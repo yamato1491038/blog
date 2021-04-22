@@ -4,15 +4,16 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/my_page.css') }}">
 
     <!-- JS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
-    <script type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="{{ asset('/js/image_upload.js') }}"></script>
+
   </head>
   <body>
     <div class="container">
@@ -61,11 +62,11 @@
                             <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
-                          <div class="modal-body">
+                          <div class="modal-body" id="image-box">
                           <form method="post" action="{{ route('my_image.upload') }}" enctype="multipart/form-data">
                             @csrf
-                            <input type="file" name="image" accept="image/png, image/jpeg">
-                            <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+                            <input class="image-file" type="file" name="image" accept="image/png, image/jpeg">
+                            <input class="id-file" type="hidden" data-uid="{{ Auth::id() }}" name="user_id" value="{{ Auth::id() }}">
                             
                           </div>
                           <div class="modal-footer">
@@ -76,10 +77,6 @@
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="low-image_text">
-                      変更
-                      
                     </div>
                   </div>
                 </td>
