@@ -9,8 +9,8 @@ class Address extends Model
 {
     use HasFactory;
 
-    public function address(){
-        return $this->belongsTo('App\Models\Address');
+    public function group(){
+        return $this->hasOne('App\Models\Group');
     }
 
     public function scopeSearch($query) {
