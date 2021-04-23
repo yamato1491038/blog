@@ -59,36 +59,46 @@
     </div>
   </div>
 </nav>
-<div class="container mx-auto p-5">
+<div class="container mx-auto p-4">
   <div class="row">
     <div class="col-2">
       <div>
-        <p class="text-xl mb-4"><i class="fas fa-search"></i> 検索</p>
+        <p class="text-xl mb-2"><i class="fas fa-search"></i>検索</p>
         <form method="GET" action="/address/index">
-          <div class="mb-4">
+          <div class="mb-2">
             <label for="name" class="block mb-2 font-bold">名前：</label>
-            <input type="text" name="name" id="name" class="shadow appearance-none border rounded w-full py-2 px-3">
+            <input type="text" name="name" id="name" class="appearance-none border rounded w-full ">
           </div>
 
-          <div class="mb-4">
+          <div class="mb-2">
             <label for="name" class="block mb-2 font-bold">郵便番号：</label>
-            <input type="text" name="zip_code" id="name" class="shadow appearance-none border rounded w-full py-2 px-3">
+            <input type="text" name="zip_code" id="name" class="appearance-none border rounded w-full py-2 px-2">
           </div>
 
-          <div class="mb-4">
+          <div class="mb-2">
             <label for="name" class="block mb-2 font-bold">住所：</label>
-            <input type="text" name="prefecture" id="name" class="shadow appearance-none border rounded w-full py-2 px-3 mb-2" placeholder="都道府県">
-            <input type="text" name="city" id="name" class="shadow appearance-none border rounded w-full py-2 px-3 mb-2" placeholder="市">
-            <input type="text" name="town" id="name" class="shadow appearance-none border rounded w-full py-2 px-3" placeholder="町名・番地">
+            <input type="text" name="prefecture" id="name" class="appearance-none border rounded w-full py-2 px-3 mb-2" placeholder="都道府県">
+            <input type="text" name="city" id="name" class="appearance-none border rounded w-full py-2 px-3 mb-2" placeholder="市">
+            <input type="text" name="town" id="name" class="appearance-none border rounded w-full py-2 px-3" placeholder="町名・番地">
           </div>
 
-          <div class="mb-4">
+          <div class="mb-2">
             <label for="name" class="block mb-2 font-bold">電話番号：</label>
-            <input type="text" name="phone_number" id="name" class="shadow appearance-none border rounded w-full py-2 px-3">
+            <input type="text" name="phone_number" id="name" class="appearance-none border rounded w-full py-2 px-3">
+          </div>
+
+          <div class="mb-2">
+            <label for="group_id" class="block mb-2 font-bold">職業：</label>
+              <select  class="appearance-none border rounded w-full py-2 px-3"name="group_id">
+                <option value="">選択してください</option>
+                  @foreach($groups as $group)
+                    <option value="{{ $group->id }}">{{$group->name}}</option>
+                  @endforeach
+              </select>
           </div>
 
           <div class="flex justify-center">
-            <button type="submit" class="hover:opacity-75 bg-blue-500 font-semibold text-white py-2 px-4 rounded">送信</button>
+            <button type="submit" class="hover:opacity-75 bg-blue-500 font-bold text-white py-2 px-4 rounded">送信</button>
           </div>
 
         </form>
@@ -119,6 +129,9 @@
             <th class="border border-b-4">
               電話番号
             </th>
+            <th class="border border-b-4">
+              Like
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -144,6 +157,9 @@
             </td>
             <td class="border">
               {{$address->phone_number}}
+            </td>
+            <td class="border">
+              ☆
             </td>
           </tr>
         @endforeach

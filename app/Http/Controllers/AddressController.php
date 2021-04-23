@@ -15,6 +15,8 @@ class AddressController extends Controller
     public function index(Request $request) {
 
         $prefs = config('pref');
+
+        
         $addresses = Address::search()->paginate(15);
         $search_params = $request->only([
             'name',
@@ -29,12 +31,15 @@ class AddressController extends Controller
         // ナビバー画像呼び出し
         $user_id = Auth::id();
         $my_image = MyImage::where('user_id', $user_id)->first();
+
+        $groups = Group::all();
         
         return view('address.index', [
             'prefs' => $prefs,
             'addresses' => $addresses,
             'search_params' => $search_params,
-            'my_image' => $my_image
+            'my_image' => $my_image,
+            'groups' => $groups
         ]);
     }
 
