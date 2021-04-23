@@ -1,0 +1,13 @@
+.navbar-contents{
+
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar-image{
+
+  height: 35px;
+  width: 35px;
+  padding-top: 3px;
+}

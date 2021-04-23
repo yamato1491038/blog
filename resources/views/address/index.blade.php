@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="{{ asset('css/app.css') }}">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{{ asset('css/index.css') }}">
 </head>
 
 <body>
@@ -17,31 +18,48 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-      <ul class="navbar-nav">
-        <div style="width: 35px">
-          <img src="{{ Storage::url($my_image->file_path) }}" style="margin-top:3px;" class="rounded-circle"/>
-        </div>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          {{ Auth::user()->name }}
-          </a>
-          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-            <li><a class="dropdown-item" href="{{ route('my_image.show') }}">マイページ</a>
-            <li><form method="POST" name="form1" action="{{ route('logout') }}">
-                  @csrf
-                  <a class="dropdown-item" href="javascript:form1.submit()">ログアウト</a>
-                </form>
+    <div class="navbar-contents">
+      <div class="navbar-content">
+        <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              登録業務
+              </a>
+              <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                <li><a class="dropdown-item" href="{{ route('address.create') }}">住所登録</a></li>
+                <li><a class="dropdown-item" href="#">グループ業務</a></li>
+              </ul>
             </li>
           </ul>
-        </li>
-      </ul>
+        </div>
+      </div>
+      <div class="navbar-content">
+        <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+          <ul class="navbar-nav">
+            <div class="navbar-image">
+              <img src="{{ Storage::url($my_image->file_path) }}" class="rounded-circle"/>
+            </div>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              {{ Auth::user()->name }}
+              </a>
+              <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                <li><a class="dropdown-item" href="{{ route('my_image.show') }}">マイページ</a>
+                <li><form method="POST" name="form1" action="{{ route('logout') }}">
+                      @csrf
+                      <a class="dropdown-item" href="javascript:form1.submit()">ログアウト</a>
+                    </form>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </nav>
 <div class="container mx-auto p-5">
-  <a href="{{ route('address.create') }}" class="ml-4 text-sm text-gray-700 underline">情報登録</a>
-
   <div class="row">
     <div class="col-2">
       <div>
