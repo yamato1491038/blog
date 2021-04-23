@@ -11,6 +11,21 @@ class GroupController extends Controller
 {
     public function create(){
 
-        return view('group.create');
+        $groups = Group::all();
+
+        return view('group.create', [
+            'groups' => $groups
+        ]);
+    }
+
+
+    public function store(Request $request){
+
+        $group = new Group;
+
+        $group->name = $request->input('name');
+        $group->save();
+
+        return redirect('group/create');
     }
 }

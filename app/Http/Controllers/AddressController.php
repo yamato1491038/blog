@@ -6,8 +6,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Address;
 use App\Models\Group;
-use Illuminate\Support\Facades\Auth;
 use App\Models\MyImage;
+
+use Illuminate\Support\Facades\Auth;
 
 class AddressController extends Controller
 {
@@ -15,8 +16,6 @@ class AddressController extends Controller
 
         $prefs = config('pref');
         $addresses = Address::search()->paginate(15);
-
-        // ファイル出力のための値
         $search_params = $request->only([
             'name',
             'zip_code',
@@ -24,9 +23,10 @@ class AddressController extends Controller
             'city',
             'town',
             'phone_number',
+            'prefs' => $prefs
         ]);
 
-        // ログインユーザーの画像取得
+        // ナビバー画像呼び出し
         $user_id = Auth::id();
         $my_image = MyImage::where('user_id', $user_id)->first();
         
@@ -37,7 +37,6 @@ class AddressController extends Controller
             'my_image' => $my_image
         ]);
     }
-
 
 
 

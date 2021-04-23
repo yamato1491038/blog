@@ -28,7 +28,7 @@
               </a>
               <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                 <li><a class="dropdown-item" href="{{ route('address.create') }}">住所登録</a></li>
-                <li><a class="dropdown-item" href="#">グループ業務</a></li>
+                <li><a class="dropdown-item" href="{{ route('group.create') }}">グループ業務</a></li>
               </ul>
             </li>
           </ul>
