@@ -12,9 +12,11 @@ class GroupController extends Controller
     public function create(){
 
         $groups = Group::all();
+        $addresses = Address::all();
 
         return view('group.create', [
-            'groups' => $groups
+            'groups' => $groups,
+            'addresses' => $addresses
         ]);
     }
 

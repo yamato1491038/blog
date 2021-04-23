@@ -38,14 +38,16 @@
             <tr>
               <th scope="col">#</th>
               <th scope="col">グループ名</th>
+              <th scope="col">所属人数</th>
               <th scope="col">操作</th>
             </tr>
           </thead>
           <tbody>
-            @foreach($groups as $index => $group)
+            @foreach($groups as $group)
               <tr>
-                <th scope="row">{{ $index + 1 }}</th>
+                <th scope="row">{{ $group->id }}</th>
                 <td>{{ $group->name }}</td>
+                <td>***</td>
                 <td>
                   <button type="button" class="btn btn-secondary btn-sm">修正</button>
                   <button type="button" class="btn btn-danger btn-sm">削除</button>
