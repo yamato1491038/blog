@@ -16,7 +16,6 @@ class AddressController extends Controller
 
         $prefs = config('pref');
 
-        
         $addresses = Address::search()->paginate(15);
         $search_params = $request->only([
             'name',
