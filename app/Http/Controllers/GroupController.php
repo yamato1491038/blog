@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 use App\Models\Address;
 use App\Models\Group;
 
@@ -12,11 +14,38 @@ class GroupController extends Controller
     public function create(){
 
         $groups = Group::all();
-        $addresses = Address::all();
+        // $groups = Group::select('id','name','count(id)')->groupBy('id')->get()->toArray();
+        
+
+        // $groups = DB::table('addresses')
+        //     ->select(DB::raw('count(*) as count, group_id'))
+        //     // ->where('status', '<>', 1)
+        //     ->groupBy('group_id')
+        //     ->get();
+        // dd($groups);
+
+        // $groups = Group::get()->toArray();
+
+        
+        $groups_add_count = array();
+
+        foreach ($groups as $group){
+            
+            $group_count = Address::where('group_id', $group["id"])->count();
+            
+            $groups_add_count[$group["id"]] = $group_count;
+            // $array1 = array('group_count' => $group_count);
+            // dd();
+
+            // $group->concat(['group_count' => $group_count]);
+            // array_merge($groups_add_count, $array1);
+            
+        }
+        // dd($groups_add_count);
 
         return view('group.create', [
             'groups' => $groups,
-            'addresses' => $addresses
+            'groups_add_count' => $groups_add_count
         ]);
     }
 

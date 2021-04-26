@@ -47,7 +47,12 @@
               <tr>
                 <th scope="row">{{ $group->id }}</th>
                 <td>{{ $group->name }}</td>
-                <td>***</td>
+                <!-- グループごとに人数出したい -->
+                @foreach($groups_add_count as $key => $count)
+                  @if($group->id == $key)
+                    <td>{{ $count }}</td>
+                  @endif
+                @endforeach
                 <td>
                   <button type="button" class="btn btn-secondary btn-sm">修正</button>
                   <button type="button" class="btn btn-danger btn-sm">削除</button>

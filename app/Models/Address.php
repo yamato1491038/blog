@@ -40,10 +40,4 @@ class Address extends Model
         });
 
     }
-
-    public function scopeSearchCount($group_id) {
-
-        $count = Address::where('group_id', $group_id)->count();
-        return $count;
-    }
 }
