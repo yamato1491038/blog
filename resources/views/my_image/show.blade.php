@@ -52,7 +52,9 @@
                 <td>
                   <label for="image_upload" class="low-style">
                     <div class="low-image image-container rounded-circle">
-                      <img src="{{ Storage::url($my_image->file_path) }}" style="height: 100%;"/>
+                      @if($my_image)
+                        <img src="{{ Storage::url($my_image->file_path) }}" style="height: 100%;"/>
+                      @endif
                       <div class="mask">
                         <div class="caption">編集</div>
                       </div>

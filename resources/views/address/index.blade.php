@@ -38,7 +38,9 @@
         <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
           <ul class="navbar-nav">
             <div class="navbar-image">
-              <img src="{{ Storage::url($my_image->file_path) }}" class="rounded-circle"/>
+              @if($my_image)
+                <img src="{{ Storage::url($my_image->file_path) }}" class="rounded-circle"/>
+              @endif
             </div>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
