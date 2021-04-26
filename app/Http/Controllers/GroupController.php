@@ -35,13 +35,11 @@ class GroupController extends Controller
             
             $groups_add_count[$group["id"]] = $group_count;
             // $array1 = array('group_count' => $group_count);
-            // dd();
 
             // $group->concat(['group_count' => $group_count]);
             // array_merge($groups_add_count, $array1);
             
         }
-        // dd($groups_add_count);
 
         return view('group.create', [
             'groups' => $groups,

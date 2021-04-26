@@ -47,7 +47,7 @@
               <tr>
                 <th scope="row">{{ $group->id }}</th>
                 <td>{{ $group->name }}</td>
-                <!-- グループごとに人数出したい -->
+                <!-- グループごとに人数出す -->
                 @foreach($groups_add_count as $key => $count)
                   @if($group->id == $key)
                     <td>{{ $count }}</td>
