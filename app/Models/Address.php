@@ -34,6 +34,9 @@ class Address extends Model
         })
         ->when($request->phone_number, function($q, $phone_number) {
             $q->where('phone_number', 'LIKE', '%' . $phone_number . '%');
+        })
+        ->when($request->group_id, function($q, $group_id) {
+            $q->where('group_id', 'LIKE', $group_id);
         });
 
     }

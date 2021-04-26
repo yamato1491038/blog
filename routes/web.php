@@ -33,6 +33,11 @@ Route::group(['middleware' => ['auth']], function(){
 
     Route::get('/address/export', 'App\Http\Controllers\AddressController@csvDownload')->name('address.export');
 
+
+    Route::get('/group/create', 'App\Http\Controllers\GroupController@create')->name('group.create');
+    Route::post('/group/store', 'App\Http\Controllers\GroupController@store')->name('group.store');
+    Route::delete('/group/destroy', 'App\Http\Controllers\GroupController@destroy')->name('group.destroy');
+
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'address/index']);
 });
 

@@ -6,17 +6,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Address;
 use App\Models\Group;
-use Illuminate\Support\Facades\Auth;
 use App\Models\MyImage;
+
+use Illuminate\Support\Facades\Auth;
 
 class AddressController extends Controller
 {
     public function index(Request $request) {
 
         $prefs = config('pref');
-        $addresses = Address::search()->paginate(15);
 
-        // ファイル出力のための値
+        $addresses = Address::search()->paginate(15);
         $search_params = $request->only([
             'name',
             'zip_code',
@@ -24,20 +24,23 @@ class AddressController extends Controller
             'city',
             'town',
             'phone_number',
+            'prefs' => $prefs
         ]);
 
-        // ログインユーザーの画像取得
+        // ナビバー画像呼び出し
         $user_id = Auth::id();
         $my_image = MyImage::where('user_id', $user_id)->first();
+
+        $groups = Group::all();
         
         return view('address.index', [
             'prefs' => $prefs,
             'addresses' => $addresses,
             'search_params' => $search_params,
-            'my_image' => $my_image
+            'my_image' => $my_image,
+            'groups' => $groups
         ]);
     }
-
 
 
 
