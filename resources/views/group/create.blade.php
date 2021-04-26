@@ -7,7 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
   </head>
 <body>
   <div class="container">
@@ -54,8 +54,15 @@
                   @endif
                 @endforeach
                 <td>
-                  <button type="button" class="btn btn-secondary btn-sm">修正</button>
-                  <button type="button" class="btn btn-danger btn-sm">削除</button>
+                  <div class="button-contents">
+                    <button type="button" class="btn btn-secondary btn-sm">修正</button>
+                    <form action="{{route('group.destroy')}}" method="post">
+                      @csrf
+                      @method("delete")
+                      <input type="hidden" name="id" value="{{$group->id}}">
+                      <input type="submit" value="削除" class="btn btn-sm btn-danger" onclick='return confirm("削除しますか？");'>
+                    </form>
+              
                 </td>
               </tr>
             @endforeach

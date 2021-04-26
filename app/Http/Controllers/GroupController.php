@@ -57,4 +57,12 @@ class GroupController extends Controller
 
         return redirect('group/create');
     }
+
+    public function destroy(Request $request){
+
+        $group = Group::find($request->input('id'));
+        $group->delete();
+
+        return redirect('group/create');
+    }
 }

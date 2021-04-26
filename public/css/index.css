@@ -11,3 +11,7 @@
   width: 35px;
   padding-top: 3px;
 }
+
+.button-contents{
+  display:flex;
+}
