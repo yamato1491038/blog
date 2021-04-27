@@ -10,7 +10,15 @@ class Address extends Model
     use HasFactory;
 
     public function group(){
-        return $this->hasOne('App\Models\Group');
+        return $this->hasOne(Group::class);
+    }
+
+    public function likes(){
+        return $this->hasMany(Like::class);
+    }
+
+    public function like_by(){
+        return Like::where('user_id', Auth::user()->id)->first();
     }
 
     public function scopeSearch($query) {

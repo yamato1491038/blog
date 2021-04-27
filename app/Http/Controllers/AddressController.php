@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Address;
 use App\Models\Group;
 use App\Models\MyImage;
+use App\Models\Like;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -32,13 +33,16 @@ class AddressController extends Controller
         $my_image = MyImage::where('user_id', $user_id)->first();
 
         $groups = Group::all();
+
+        $likes = Like::where('user_id', $user_id)->get();
         
         return view('address.index', [
             'prefs' => $prefs,
             'addresses' => $addresses,
             'search_params' => $search_params,
             'my_image' => $my_image,
-            'groups' => $groups
+            'groups' => $groups,
+            'likes' => $likes
         ]);
     }
 

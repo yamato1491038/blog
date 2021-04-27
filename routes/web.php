@@ -38,6 +38,9 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('/group/store', 'App\Http\Controllers\GroupController@store')->name('group.store');
     Route::delete('/group/destroy', 'App\Http\Controllers\GroupController@destroy')->name('group.destroy');
 
+    Route::post('/like/store', 'App\Http\Controllers\LikeController@store')->name('like.store');
+    Route::delete('/like/destroy', 'App\Http\Controllers\LikeController@destroy')->name('like.destroy');
+
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'address/index']);
 });
 

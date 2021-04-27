@@ -161,7 +161,33 @@
               {{$address->phone_number}}
             </td>
             <td class="border">
-              ☆
+              <!-- likeチェック変数定義 -->
+              @php
+                $like_counter = 0
+              @endphp
+                @foreach ($likes as $like)
+                  
+                  @if ($like->address_id == $address->id)
+                    <form method="post" action="{{ route('like.destroy') }}">
+                      @csrf
+                      @method("delete")
+                      <input type="hidden" name="like_id" value="{{ $like->id }}">
+                      <input type="submit" value="削除" class="btn btn-sm btn-danger">
+                    </form>
+                    <!-- 該当レコードにlikeあれば1 -->
+                    @php
+                      $like_counter = 1
+                    @endphp
+                  @endif
+                @endforeach
+              <!-- likeあれば表示しない -->
+              @if($like_counter == 0)
+                <form method="post" action="{{ route('like.store') }}">
+                  @csrf
+                  <input type="hidden" name="address_id" value="{{ $address->id }}">
+                  <input type="submit" value="いいね" class="btn btn-sm btn-info">
+                </form>
+              @endif
             </td>
           </tr>
         @endforeach

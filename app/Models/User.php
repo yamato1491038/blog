@@ -60,6 +60,10 @@ class User extends Authenticatable
     ];
 
     public function my_image(){
-        return $this->belongsTo('App\Models\MyImage');
+        return $this->belongsTo(MyImage::class);
+    }
+
+    public function likes(){
+        return $this->hasMany(Like::class);
     }
 }
