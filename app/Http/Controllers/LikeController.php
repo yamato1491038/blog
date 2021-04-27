@@ -11,17 +11,28 @@ class LikeController extends Controller
 {
     public function store(Request $request){
         
+        $new_like = new Like;
 
-        Like::create(
-            array(
-                'user_id' => Auth::user()->id,
-                'address_id' => $request->address_id
-            )
-        );
+        $new_like->user_id = Auth::user()->id;
+        $new_like->address_id = $request->address_id;
+
+        $new_like->save();
+
+        // Like::create(
+        //     array(
+        //         'user_id' => Auth::user()->id,
+        //         'address_id' => $request->address_id
+        //     )
+        // );
+
+        // $new_like = Like::where('user_id', Auth::user()->id)
+        //             ->where('address_id', $request->address_id)->get();
+
+        return response()->json(["new_like"=> $new_like]);
 
         // $address = Address::findOrFail($addressId);
 
-        return redirect('address/index');
+        // return redirect('address/index');
     }
 
     public function destroy(Request $request){
@@ -29,10 +40,12 @@ class LikeController extends Controller
         $like_id = $request->like_id;
         Like::find($like_id)->delete();
 
+        return response()->json([]);
+
         // $address = Address::findOrFail($addressId);
         // $address->like_by()->findOrFail($likeID)->delete();
 
-        return redirect('address/index');
+        // return redirect('address/index');
 
     }
 }
