@@ -78,6 +78,27 @@ class AddressController extends Controller
     }
 
 
+    public function show($id){
+
+        $address = Address::find($id);
+
+        $prefs = config('pref');
+        $groups = Group::all();
+
+        return view('address.show', [
+            'address' => $address,
+            'prefs' => $prefs,
+            'groups' => $groups
+            ]);
+    }
+
+
+    public function update(){
+
+
+    }
+
+
 
     public function csvDownload() {
         $addresses = Address::search()->get();
