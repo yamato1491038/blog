@@ -69,8 +69,12 @@
                       @endforeach
                     </select>
                   </div>
-
                 <input class="btn btn-info" type="submit" name="btn_confirm" value="編集">
+              </form>
+              <form action="{{ route('address.destroy',['id' => $address->id])}}" method="post">
+                @csrf
+                @method("delete")
+                <input type="submit" value="削除" class="btn btn-danger" onclick='return confirm("削除しますか？");'>
               </form>
             </div>
           </div>

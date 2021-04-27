@@ -74,7 +74,7 @@ class AddressController extends Controller
 
         $address->save();
 
-        return view('address.store');
+        return redirect('address/index');
     }
 
 
@@ -108,7 +108,14 @@ class AddressController extends Controller
         $address->save();
 
         return redirect('address/index');
+    }
 
+    public function destroy($id){
+
+        $address = Address::find($id);
+        $address->delete();
+
+        return redirect('address/index');
     }
 
 
