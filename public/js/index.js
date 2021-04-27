@@ -30,7 +30,7 @@ $(function(){
       headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
     });
 
-    $.ajax({	
+    $.ajax({
       url:"/like/store",
       method: 'post',
       data: fd,
@@ -44,10 +44,9 @@ $(function(){
       appendCheckAlready(newLikeId, clickAddressId);
     }).fail(function(){
           //通信失敗
-          console.log('失敗');
+          alert('いいねに失敗しました');
     }).always(function(){
           //通信完了
-          console.log('終了');
     });
   });
 
@@ -59,13 +58,14 @@ $(function(){
 
     const fd2 = new FormData();
     fd2.append('like_id', clickLikeId);
+    // DELETEとするための記述
     fd2.append('_method', "DELETE");
 
     $.ajaxSetup({
       headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
     });
 
-    $.ajax({	
+    $.ajax({
       url:"/like/destroy",
       method: 'post',
       data: fd2,
@@ -78,10 +78,9 @@ $(function(){
           
     }).fail(function(){
           //通信失敗
-          console.log('失敗');
+          alert('いいね取り消しに失敗しました');
     }).always(function(){
           //通信完了
-          console.log('終了');
     });
   });
 });
