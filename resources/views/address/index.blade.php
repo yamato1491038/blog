@@ -140,6 +140,9 @@
             <th class="border border-b-4">
               Like
             </th>
+            <th class="border border-b-4">
+              
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -194,6 +197,9 @@
                   </svg>
                 </div>
               @endif
+            </td>
+            <td class="border">
+              <a href="{{ route('address.show',['id' => $address->id]) }}" class="" role="">編集</a>
             </td>
           </tr>
         @endforeach

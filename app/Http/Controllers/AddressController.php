@@ -74,7 +74,48 @@ class AddressController extends Controller
 
         $address->save();
 
-        return view('address.store');
+        return redirect('address/index');
+    }
+
+
+    public function show($id){
+
+        $address = Address::find($id);
+
+        $prefs = config('pref');
+        $groups = Group::all();
+
+        return view('address.show', [
+            'address' => $address,
+            'prefs' => $prefs,
+            'groups' => $groups
+            ]);
+    }
+
+
+    public function update(Request $request, $id){
+
+        $address = Address::find($id);
+
+        $address->name = $request->input('name');
+        $address->zip_code = $request->input('zip_code');
+        $address->prefecture = $request->input('prefecture');
+        $address->city = $request->input('city');
+        $address->town = $request->input('town');
+        $address->phone_number = $request->input('phone_number');
+        $address->group_id = $request->input('group_id');
+
+        $address->save();
+
+        return redirect('address/index');
+    }
+
+    public function destroy($id){
+
+        $address = Address::find($id);
+        $address->delete();
+
+        return redirect('address/index');
     }
 
 
