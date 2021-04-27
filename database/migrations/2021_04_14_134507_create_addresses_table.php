@@ -21,6 +21,7 @@ class CreateAddressesTable extends Migration
             $table->string('city');
             $table->string('town');
             $table->string('phone_number');
+            $table->integer('likes_count')->default(0);
             $table->timestamps();
         });
     }

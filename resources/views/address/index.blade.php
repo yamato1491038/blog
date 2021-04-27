@@ -4,11 +4,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+
   <title>住所録</title>
   <link rel="stylesheet" href="{{ asset('css/app.css') }}">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="{{ asset('css/index.css') }}">
+
+  <!-- JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="{{ asset('/js/index.js') }}"></script>
 </head>
 
 <body>
@@ -38,7 +44,9 @@
         <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
           <ul class="navbar-nav">
             <div class="navbar-image">
-              <img src="{{ Storage::url($my_image->file_path) }}" class="rounded-circle"/>
+              @if($my_image)
+                <img src="{{ Storage::url($my_image->file_path) }}" class="rounded-circle"/>
+              @endif
             </div>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -71,20 +79,20 @@
           </div>
 
           <div class="mb-2">
-            <label for="name" class="block mb-2 font-bold">郵便番号：</label>
-            <input type="text" name="zip_code" id="name" class="appearance-none border rounded w-full py-2 px-2">
+            <label for="zip_code" class="block mb-2 font-bold">郵便番号：</label>
+            <input type="text" name="zip_code" id="zip_code" class="appearance-none border rounded w-full py-2 px-2">
           </div>
 
           <div class="mb-2">
-            <label for="name" class="block mb-2 font-bold">住所：</label>
-            <input type="text" name="prefecture" id="name" class="appearance-none border rounded w-full py-2 px-3 mb-2" placeholder="都道府県">
-            <input type="text" name="city" id="name" class="appearance-none border rounded w-full py-2 px-3 mb-2" placeholder="市">
-            <input type="text" name="town" id="name" class="appearance-none border rounded w-full py-2 px-3" placeholder="町名・番地">
+            <label for="address" class="block mb-2 font-bold">住所：</label>
+            <input type="text" name="prefecture" id="address" class="appearance-none border rounded w-full py-2 px-3 mb-2" placeholder="都道府県">
+            <input type="text" name="city" id="a" class="appearance-none border rounded w-full py-2 px-3 mb-2" placeholder="市">
+            <input type="text" name="town" id="b" class="appearance-none border rounded w-full py-2 px-3" placeholder="町名・番地">
           </div>
 
           <div class="mb-2">
-            <label for="name" class="block mb-2 font-bold">電話番号：</label>
-            <input type="text" name="phone_number" id="name" class="appearance-none border rounded w-full py-2 px-3">
+            <label for="telephone" class="block mb-2 font-bold">電話番号：</label>
+            <input type="text" name="phone_number" id="telephone" class="appearance-none border rounded w-full py-2 px-3">
           </div>
 
           <div class="mb-2">
@@ -159,7 +167,33 @@
               {{$address->phone_number}}
             </td>
             <td class="border">
-              ☆
+              <!-- likeチェック変数定義 -->
+              @php
+                $like_counter = 0
+              @endphp
+                @foreach ($likes as $like)
+                  
+                  @if ($like->address_id == $address->id)
+                    <div class="like-field like-field-{{ $address->id }}">
+                      <svg data-like-id="{{ $like->id }}" data-address-id="{{ $address->id }}" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill address-like-already" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                      </svg>
+                    </div>
+                    <!-- 該当レコードにlikeあれば1 -->
+                    @php
+                      $like_counter = 1
+                    @endphp
+                  @endif
+                @endforeach
+              <!-- likeあれば表示しない -->
+              @if($like_counter == 0)
+                <div class="like-field like-field-{{ $address->id }}">
+                  <svg data-address-id="{{ $address->id }}" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle address-like" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                  </svg>
+                </div>
+              @endif
             </td>
           </tr>
         @endforeach

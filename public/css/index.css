@@ -15,3 +15,11 @@
 .button-contents{
   display:flex;
 }
+
+.address-like{
+  cursor: pointer;
+}
+
+.address-like-already{
+  cursor: pointer;
+}
