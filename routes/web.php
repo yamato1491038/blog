@@ -28,7 +28,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/address/create', 'App\Http\Controllers\AddressController@create')->name('address.create');
     Route::post('/address/store', 'App\Http\Controllers\AddressController@store')->name('address.store');
     Route::get('/address/show/{id}', 'App\Http\Controllers\AddressController@show')->name('address.show');
-    Route::post('/address/update', 'App\Http\Controllers\AddressController@update')->name('address.update');
+    Route::post('/address/update/{id}', 'App\Http\Controllers\AddressController@update')->name('address.update');
 
     Route::get('/my_image/show', 'App\Http\Controllers\MyImageController@show')->name('my_image.show');
     Route::post('/my_image/upload', 'App\Http\Controllers\MyImageController@upload')->name('my_image.upload');

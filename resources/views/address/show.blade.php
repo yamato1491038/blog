@@ -17,7 +17,7 @@
           <div class="card">
             <div class="card-header">情報登録</div>
             <div class='card-body'>
-              <form method="POST" action="{{ route('address.update') }}">
+              <form method="POST" action="{{ route('address.update', ['id' => $address->id]) }}">
                 @csrf
                 <div class="mb-3">
                 <label for="name" class="form-label">氏名</label>
@@ -31,8 +31,7 @@
 
                 <div class="mb-3">
                   <label for="prefecture" class="form-label">都道府県</label>
-                    <select  class="form-select"name="prefecture">
-                      <option value="">選択してください</option>
+                    <select class="form-select" name="prefecture">
                       @foreach($prefs as $index => $name)
                         @if ($index == $address->prefecture)
                           <option value="{{ $index }}" selected>{{$name}}</option>
@@ -61,7 +60,6 @@
                 <div class="mb-3">
                   <label for="group_id" class="form-label">職業</label>
                     <select  class="form-select"name="group_id">
-                      <option value="">選択してください</option>
                       @foreach($groups as $group)
                         @if ($group->id == $address->group_id)
                           <option value="{{ $group->id }}" selected>{{$group->name}}</option>
@@ -72,7 +70,7 @@
                     </select>
                   </div>
 
-                <input class="btn btn-info" type="submit" name="btn_confirm" value="登録する">
+                <input class="btn btn-info" type="submit" name="btn_confirm" value="編集">
               </form>
             </div>
           </div>

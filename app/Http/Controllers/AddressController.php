@@ -93,8 +93,21 @@ class AddressController extends Controller
     }
 
 
-    public function update(){
+    public function update(Request $request, $id){
 
+        $address = Address::find($id);
+
+        $address->name = $request->input('name');
+        $address->zip_code = $request->input('zip_code');
+        $address->prefecture = $request->input('prefecture');
+        $address->city = $request->input('city');
+        $address->town = $request->input('town');
+        $address->phone_number = $request->input('phone_number');
+        $address->group_id = $request->input('group_id');
+
+        $address->save();
+
+        return redirect('address/index');
 
     }
 
