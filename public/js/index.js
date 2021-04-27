@@ -17,15 +17,14 @@ $(function(){
     $('.like-field-' + addressId).append(html);
   }
 
-  // いいね登録
-  $('.address-like').click(function(){
+  // いいね登録(クリックでイベント・ウェブページ全体に対してイベントハンドラを登録する書き方）
+  $(document).on('click', '.address-like', function(){
 
+    // どのアドレスレコードのものか
     const clickAddressId =  $(this).data('address-id');
 
     const fd = new FormData();
     fd.append('address_id', clickAddressId);
-
-    console.log(fd);
 
     $.ajaxSetup({
       headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
@@ -38,10 +37,9 @@ $(function(){
       contentType: false,
       processData: false,
     }).done(function(new_like_json) {
-
+      // jsonからさっき登録したlikeレコードのID取得
       const newLikeId = new_like_json.new_like.id;
-      console.log(newLikeId);
-          
+      // チェック画像の差し替え
       $('.like-field-' + clickAddressId).children().remove();
       appendCheckAlready(newLikeId, clickAddressId);
     }).fail(function(){
@@ -78,8 +76,6 @@ $(function(){
       $('.like-field-' + clickAddressId).children().remove();
       appendCheck(clickAddressId);
           
-      // $('.like-field-' + clickAddressId).children().remove();
-      // appendImage(newLikeId, clickAddressId);
     }).fail(function(){
           //通信失敗
           console.log('失敗');
@@ -88,6 +84,4 @@ $(function(){
           console.log('終了');
     });
   });
-
-
 });
