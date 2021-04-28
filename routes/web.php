@@ -30,6 +30,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/address/show/{id}', 'App\Http\Controllers\AddressController@show')->name('address.show');
     Route::post('/address/update/{id}', 'App\Http\Controllers\AddressController@update')->name('address.update');
     Route::delete('/address/destroy/{id}', 'App\Http\Controllers\AddressController@destroy')->name('address.destroy');
+    Route::get('/address/search', 'App\Http\Controllers\AddressController@nameSearch')->name('address.search');
 
     Route::get('/my_image/show', 'App\Http\Controllers\MyImageController@show')->name('my_image.show');
     Route::post('/my_image/upload', 'App\Http\Controllers\MyImageController@upload')->name('my_image.upload');

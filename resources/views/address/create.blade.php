@@ -4,11 +4,16 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('css/create.css') }}">
 
-  
+  <!-- JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="{{ asset('/js/search.js') }}"></script>
+
   </head>
 <body>
   <div class="container">
@@ -20,8 +25,8 @@
             <form method="POST" action="{{ route('address.store') }}">
               @csrf
               <div class="mb-3">
-              <label for="name" class="form-label">氏名</label>
-              <input type="text" class="form-control" id="name" name="name" value="" required>
+                <label for="name" class="form-label name-label">氏名</label>
+                <input type="text" class="form-control" id="name-input" name="name" value="" required>
               </div>
 
               <div class="mb-3">
