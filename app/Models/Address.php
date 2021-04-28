@@ -9,6 +9,16 @@ class Address extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name', 
+        'zip_code',
+        'prefecture',
+        'city',
+        'town',
+        'phone_number',
+        'group_id'
+    ];
+
     public function group(){
         return $this->hasOne(Group::class);
     }
