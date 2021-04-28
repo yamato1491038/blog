@@ -16,6 +16,7 @@
         "laravel/tinker": "^2.5",
         "laravelcollective/html": "^6.2",
         "livewire/livewire": "^2.0"
+        
     },
     "require-dev": {
         "facade/ignition": "^2.5",
@@ -61,6 +62,6 @@
         "sort-packages": true
     },
     "minimum-stability": "dev",
-    "prefer-stable": true,
-    "kanazaca/counter-cache": "1.0.*"
+    "prefer-stable": true
+
 }
