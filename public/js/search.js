@@ -16,14 +16,11 @@ $(function(){
   }
 
 
-  
-
   $("#name-input").on("keyup", function() {
     let nameInput = $("#name-input").val();
-    console.log(nameInput);
 
     if (nameInput){
-    
+    // 入力あれば
       $.ajax({
         type: "GET",
         url: '/address/search',
@@ -33,36 +30,25 @@ $(function(){
       .done(function(json) {
 
         if(json.result) {
-          console.log(json.result);
+          // 一個でもあれば
           $('.green-text, .notice-text').remove();
           if(!($('.red-text').length)){
+            // 入力不可テキストなければ
             appendRegistered();
           }
           
         } else {
-          console.log("結果なし");
           $('.red-text, .notice-text').remove();
           if(!($('.green-text').length)){
             appendRegistrable();
           }
-          
-        
         }
-      //   $("#UserSearchResult").empty();
-      //   if (users.length !== 0) {
-      //     users.forEach(function(user){
-      //       addUser(user);
-      //     });
-      //   } else if (input.length == 0) {
-      //     return false;
-      //   } else {
-      //     addNoUser();
-      //   }
       })
       .fail(function() {
         alert("ユーザー検索に失敗しました");
       });
     } else {
+      // インプット無ければ
       $('.red-text, .green-text').remove();
       appendInput();
     }
