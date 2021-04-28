@@ -141,7 +141,6 @@ class AddressController extends Controller
     public function csvImport(Request $request){
 
         // アップロードしたファイルを取得
-        // 'csv_file' はビューの inputタグのname属性
         $uploaded_file = $request->file('csv_file');
 
         // アップロードしたファイルの絶対パスを取得
@@ -150,12 +149,10 @@ class AddressController extends Controller
         //SplFileObjectを生成
         $file = new SplFileObject($file_path);
 
-        //SplFileObject::READ_CSV が最速
         $file->setFlags(SplFileObject::READ_CSV);
 
         $row_count = 1;
         
-        //取得したオブジェクトを読み込み
         foreach ($file as $row){
             // 最終行の処理(最終行が空っぽの場合の対策
             if ($row === [null]) continue; 
@@ -186,7 +183,6 @@ class AddressController extends Controller
         }
     
         return redirect('address/index');
-
     }
 
 
@@ -207,8 +203,9 @@ class AddressController extends Controller
                 'zip_code',
                 'prefecture',
                 'city',
-                'address',
-                'phone_number'
+                'town',
+                'phone_number',
+                'group_id'
             ];
 
             mb_convert_variables('SJIS-win', 'UTF-8', $columns);
@@ -222,8 +219,9 @@ class AddressController extends Controller
                     $address->zip_code,
                     $address->prefecture,
                     $address->city,
-                    $address->address,
-                    $address->phone_number
+                    $address->town,
+                    $address->phone_number,
+                    $address->group_id
                 ];
 
                 mb_convert_variables('SJIS-win', 'UTF-8', $csv);
