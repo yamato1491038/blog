@@ -119,6 +119,15 @@ class AddressController extends Controller
     }
 
 
+    public function nameSearch(Request $request){
+
+        $name = $request->keyword;
+        $result = Address::where('name', 'LIKE', $name . '%')->first();
+
+        return response()->json(["result"=> $result]);
+    }
+
+
 
     public function csvDownload() {
         $addresses = Address::search()->get();
