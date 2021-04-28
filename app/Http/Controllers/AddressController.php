@@ -166,17 +166,11 @@ class AddressController extends Controller
                 ];
 
                 mb_convert_variables('SJIS-win', 'UTF-8', $csv);
-
                 fputcsv($handle, $csv);
             }
-
             fclose($handle);
         };
-
         return response()->stream($callback, 200, $headers);
-
     }
-
-
 }
 
