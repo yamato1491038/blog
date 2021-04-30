@@ -35,12 +35,14 @@ $(function(){
           if(!($('.red-text').length)){
             // 入力不可テキストなければ
             appendRegistered();
+            $('#submit_btn').prop("disabled", true);
           }
           
         } else {
           $('.red-text, .notice-text').remove();
           if(!($('.green-text').length)){
             appendRegistrable();
+            $('#submit_btn').prop("disabled", false);
           }
         }
       })

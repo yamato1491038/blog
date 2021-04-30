@@ -71,6 +71,16 @@ class AddressController extends Controller
 
     public function store(Request $request){
 
+        $request->validate([
+            'name' => 'required|unique:addresses|max:255',
+            'zip_code' => 'required',
+            'prefecture' => 'required|numeric|max:47',
+            'city' => 'required',
+            'town' => 'required',
+            'phone_number' => 'required',
+            'group_id' => 'required|numeric'
+        ]);
+
         $address = new Address;
 
         $address->name = $request->input('name');
@@ -118,6 +128,7 @@ class AddressController extends Controller
 
         return redirect('address/index');
     }
+
 
     public function destroy($id){
 
