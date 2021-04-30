@@ -9,10 +9,19 @@ use App\Models\Group;
 use App\Models\MyImage;
 use App\Models\Like;
 
+use SplFileObject;
+
 use Illuminate\Support\Facades\Auth;
 
 class AddressController extends Controller
 {
+    // protected $csvimport = null;
+
+    // public function __construct(CSVimport $csvimport){
+    //     $this->csvimport = $csvimport;
+    // }
+
+
     public function index(Request $request) {
 
         $prefs = config('pref');
@@ -62,6 +71,16 @@ class AddressController extends Controller
 
     public function store(Request $request){
 
+        $request->validate([
+            'name' => 'required|unique:addresses|max:255',
+            'zip_code' => 'required',
+            'prefecture' => 'required|numeric|max:47',
+            'city' => 'required',
+            'town' => 'required',
+            'phone_number' => 'required',
+            'group_id' => 'required|numeric'
+        ]);
+
         $address = new Address;
 
         $address->name = $request->input('name');
@@ -110,6 +129,7 @@ class AddressController extends Controller
         return redirect('address/index');
     }
 
+
     public function destroy($id){
 
         $address = Address::find($id);
@@ -129,6 +149,54 @@ class AddressController extends Controller
 
 
 
+    public function csvImport(Request $request){
+
+        // アップロードしたファイルを取得
+        $uploaded_file = $request->file('csv_file');
+
+        // アップロードしたファイルの絶対パスを取得
+        $file_path = $request->file('csv_file')->path($uploaded_file);
+
+        //SplFileObjectを生成
+        $file = new SplFileObject($file_path);
+
+        $file->setFlags(SplFileObject::READ_CSV);
+
+        $row_count = 1;
+        
+        foreach ($file as $row){
+            // 最終行の処理(最終行が空っぽの場合の対策
+            if ($row === [null]) continue; 
+            
+            // 1行目のヘッダーは取り込まない
+            if ($row_count > 1){
+                // CSVの文字コードがSJISなのでUTF-8に変更
+                $name = mb_convert_encoding($row[0], 'UTF-8');
+                $zip_code = mb_convert_encoding($row[1], 'UTF-8');
+                $prefecture = mb_convert_encoding($row[2], 'UTF-8');
+                $city = mb_convert_encoding($row[3], 'UTF-8');
+                $town = mb_convert_encoding($row[4], 'UTF-8');
+                $phone_number = mb_convert_encoding($row[5], 'UTF-8');
+                $group_id = mb_convert_encoding($row[6], 'UTF-8');
+                
+                //1件ずつインポート
+                    Address::insert(array(
+                        'name' => $name, 
+                        'zip_code' => $zip_code,
+                        'prefecture' => $prefecture,
+                        'city' => $city,
+                        'town' => $town,
+                        'phone_number' => $phone_number,
+                        'group_id' => $group_id
+                    ));
+            }
+            $row_count++;
+        }
+    
+        return redirect('address/index');
+    }
+
+
     public function csvDownload() {
         $addresses = Address::search()->get();
 
@@ -146,8 +214,9 @@ class AddressController extends Controller
                 'zip_code',
                 'prefecture',
                 'city',
-                'address',
-                'phone_number'
+                'town',
+                'phone_number',
+                'group_id'
             ];
 
             mb_convert_variables('SJIS-win', 'UTF-8', $columns);
@@ -161,22 +230,17 @@ class AddressController extends Controller
                     $address->zip_code,
                     $address->prefecture,
                     $address->city,
-                    $address->address,
-                    $address->phone_number
+                    $address->town,
+                    $address->phone_number,
+                    $address->group_id
                 ];
 
                 mb_convert_variables('SJIS-win', 'UTF-8', $csv);
-
                 fputcsv($handle, $csv);
             }
-
             fclose($handle);
         };
-
         return response()->stream($callback, 200, $headers);
-
     }
-
-
 }
 

@@ -31,11 +31,13 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('/address/update/{id}', 'App\Http\Controllers\AddressController@update')->name('address.update');
     Route::delete('/address/destroy/{id}', 'App\Http\Controllers\AddressController@destroy')->name('address.destroy');
     Route::get('/address/search', 'App\Http\Controllers\AddressController@nameSearch')->name('address.search');
+    Route::post('/address/import/', 'App\Http\Controllers\AddressController@csvImport')->name('address.import');
+    Route::get('/address/export', 'App\Http\Controllers\AddressController@csvDownload')->name('address.export');
 
     Route::get('/my_image/show', 'App\Http\Controllers\MyImageController@show')->name('my_image.show');
     Route::post('/my_image/upload', 'App\Http\Controllers\MyImageController@upload')->name('my_image.upload');
 
-    Route::get('/address/export', 'App\Http\Controllers\AddressController@csvDownload')->name('address.export');
+
 
 
     Route::get('/group/create', 'App\Http\Controllers\GroupController@create')->name('group.create');

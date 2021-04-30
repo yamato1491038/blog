@@ -22,6 +22,15 @@
         <div class="card">
           <div class="card-header">情報登録</div>
           <div class='card-body'>
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <form method="POST" action="{{ route('address.store') }}">
               @csrf
               <div class="mb-3">
@@ -69,7 +78,7 @@
                   </select>
                 </div>
 
-              <input class="btn btn-info" type="submit" name="btn_confirm" value="登録する">
+              <input class="btn btn-info" type="submit" name="btn_confirm" value="登録する" id="submit_btn">
             </form>
           </div>
         </div>

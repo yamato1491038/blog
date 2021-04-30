@@ -211,6 +211,13 @@
       </div>
 
       <div class="flex justify-center mt-10">
+        <form method="post" action="{{ route('address.import') }}" enctype="multipart/form-data">
+          @csrf
+          <input type="file" name="csv_file" id="csv_file">
+          <div class="form-group">
+            <button type="submit" class="btn btn-default btn-success font-semibold">CSVインポート</button>
+          </div>
+        </form>
         <form method="GET" action="{{ route('address.export') }}">
           @foreach($search_params as $key => $value)
             <input type="hidden" name="{{ $key }}" value="{{ $value }}">
