@@ -15,12 +15,6 @@ use Illuminate\Support\Facades\Auth;
 
 class AddressController extends Controller
 {
-    // protected $csvimport = null;
-
-    // public function __construct(CSVimport $csvimport){
-    //     $this->csvimport = $csvimport;
-    // }
-
 
     public function index(Request $request) {
 

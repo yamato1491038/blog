@@ -13,9 +13,4 @@ class Group extends Model
         return $this->belongsTo('App\Models\Address');
     }
 
-    // public function scopeSearch($group_id) {
-
-    //     $count = Address::where('group_id', $group_id)->count();
-    //     return $count;
-    // }
 }

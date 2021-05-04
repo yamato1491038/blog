@@ -9,14 +9,6 @@ use kanazaca\CounterCache\CounterCache;
 
 class Like extends Model
 {
-    // use CounterCache;
-
-    // public $counterCacheOptions = [
-    //     'Address' => [
-    //         'field' => 'likes_count',
-    //         'foreignKey' => 'address_id'
-    //     ]
-    // ];
 
     protected $fillable = ["user_id", "address_id"];
 
