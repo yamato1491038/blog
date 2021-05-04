@@ -13,6 +13,7 @@
   <!-- JS -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="{{ asset('/js/search.js') }}"></script>
+  <script src="{{ asset('/js/prefecture.js') }}"></script>
 
   </head>
 <body>
@@ -45,17 +46,18 @@
 
               <div class="mb-3">
                 <label for="prefecture" class="form-label">都道府県</label>
-                  <select  class="form-select"name="prefecture">
+                  <select  class="form-select" id="prefecture-select" name="prefecture">
                     <option value="">選択してください</option>
                     @foreach($prefs as $index => $name)
-                      <option value="{{ $index }}">{{$name}}</option>
+                      <option data-prefecture-id="{{ $index }}" value="{{ $index }}">{{$name}}</option>
                     @endforeach
                   </select>
               </div>
 
               <div class="mb-3">
-                <label for="city" class="form-label">市・町</label>
-                <input type="text"  class="form-control" id="city" name="city" value="">
+                <label for="city" class="city-label">市・町</label>
+                <select  class="form-select" id="city-select" name="city">
+                </select>
               </div>
 
               <div class="mb-3">
@@ -79,6 +81,7 @@
                 </div>
 
               <input class="btn btn-info" type="submit" name="btn_confirm" value="登録する" id="submit_btn">
+              <a href="{{ route('address.index') }}" class="btn btn-secondary" role="button">戻る</a>
             </form>
           </div>
         </div>
