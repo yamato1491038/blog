@@ -55,8 +55,10 @@
               </div>
 
               <div class="mb-3">
-                <label for="city" class="form-label">市・町</label>
-                <input type="text"  class="form-control" id="city" name="city" value="">
+                <label for="city" class="city-label">市・町</label>
+                <select  class="form-select" id="city-select" name="prefecture">
+
+                </select>
               </div>
 
               <div class="mb-3">
