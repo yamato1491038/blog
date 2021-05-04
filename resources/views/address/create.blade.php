@@ -56,8 +56,7 @@
 
               <div class="mb-3">
                 <label for="city" class="city-label">市・町</label>
-                <select  class="form-select" id="city-select" name="prefecture">
-
+                <select  class="form-select" id="city-select" name="city">
                 </select>
               </div>
 
@@ -82,6 +81,7 @@
                 </div>
 
               <input class="btn btn-info" type="submit" name="btn_confirm" value="登録する" id="submit_btn">
+              <a href="{{ route('address.index') }}" class="btn btn-secondary" role="button">戻る</a>
             </form>
           </div>
         </div>
