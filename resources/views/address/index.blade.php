@@ -211,13 +211,28 @@
       </div>
 
       <div class="flex justify-center mt-10">
-        <form method="post" action="{{ route('address.import') }}" enctype="multipart/form-data">
-          @csrf
-          <input type="file" name="csv_file" id="csv_file">
-          <div class="form-group">
-            <button type="submit" class="btn btn-default btn-success font-semibold">CSVインポート</button>
+        <button type="button" class="btn btn-success index-bottom-btn" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">CSVインポート</button>
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">CSVインポート</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form method="post" action="{{ route('address.import') }}" enctype="multipart/form-data">
+                    @csrf
+                    <input type="file" name="csv_file" id="csv_file">
+                  </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+                  <button type="submit" class="btn btn-default btn-success font-semibold">インポート</button>
+                </form>
+                </div>
+              </div>
+            </div>
           </div>
-        </form>
+        
         <form method="GET" action="{{ route('address.export') }}">
           @foreach($search_params as $key => $value)
             <input type="hidden" name="{{ $key }}" value="{{ $value }}">
