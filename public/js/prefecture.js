@@ -1,6 +1,6 @@
 $(function(){
 
-  // 1桁の数字を二桁にする関数
+  // 1桁の数字の頭に0をつける関数
   function getTwoDigitsNumber(number){
     return ("0" + number).slice(-2)
   }

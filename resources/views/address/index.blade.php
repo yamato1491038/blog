@@ -237,7 +237,7 @@
           @foreach($search_params as $key => $value)
             <input type="hidden" name="{{ $key }}" value="{{ $value }}">
           @endforeach
-          <button type="submit" class="hover:opacity-75 bg-blue-500 font-semibold text-white py-2 px-4 rounded">
+          <button type="submit" class="hover:opacity-75 bg-blue-500 font-semibold text-white py-2 px-4 rounded" onclick='return confirm("ダウンロードしますか？");'>
             CSVダウンロード
           </button>
         </form>
