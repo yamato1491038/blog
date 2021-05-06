@@ -95,7 +95,7 @@
             <input type="text" name="phone_number" id="telephone" class="appearance-none border rounded w-full py-2 px-3">
           </div>
 
-          <div class="mb-2">
+          <div class="mb-3">
             <label for="group_id" class="block mb-2 font-bold">職業：</label>
               <select  class="appearance-none border rounded w-full py-2 px-3"name="group_id">
                 <option value="">選択してください</option>
@@ -103,6 +103,12 @@
                     <option value="{{ $group->id }}">{{$group->name}}</option>
                   @endforeach
               </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="like-box" class="block mb-2 font-bold">お気に入り：
+            <input type="checkbox" class="form-check-input" name="like" value="true" id="like-box">
+          </label>
           </div>
 
           <div class="flex justify-center">

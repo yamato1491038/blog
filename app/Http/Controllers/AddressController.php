@@ -29,6 +29,7 @@ class AddressController extends Controller
             'town',
             'phone_number',
             'prefs' => $prefs
+            
         ]);
 
         // ナビバー画像呼び出し

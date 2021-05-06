@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class Address extends Model
 {
@@ -55,7 +57,23 @@ class Address extends Model
         })
         ->when($request->group_id, function($q, $group_id) {
             $q->where('group_id', 'LIKE', $group_id);
-        });
+        })
+        ->when($request->like, function($q) {
+
+            // ライクしているaddress_idを配列にしている
+            $address_ids = DB::table('likes')
+                            ->select('address_id')
+                            ->where('user_id', Auth::id())
+                            ->get();
+            $id_array = [];
+            foreach ($address_ids as $address_id){
+                $id_array[] = $address_id->address_id;
+            }
+
+            $q->whereIn('addresses.id', $id_array);
+            });
+        
+        
 
     }
 }

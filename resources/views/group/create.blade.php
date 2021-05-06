@@ -57,7 +57,7 @@
                       <input type="hidden" name="id" value="{{$group->id}}">
                       <input type="submit" value="削除" class="btn btn-sm btn-danger" onclick='return confirm("削除しますか？");'>
                     </form>
-              
+                  </div>
                 </td>
               </tr>
             @endforeach
