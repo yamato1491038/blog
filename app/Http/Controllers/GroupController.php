@@ -13,20 +13,14 @@ class GroupController extends Controller
 {
     public function create(){
 
-        $groups = Group::all();
-        
-        $groups_add_count = array();
-
-        foreach ($groups as $group){
-            
-            $group_count = Address::where('group_id', $group["id"])->count();
-            
-            $groups_add_count[$group["id"]] = $group_count;
-        }
+        $groups = DB::table('groups')
+                        ->leftJoin('addresses', 'groups.id', '=', 'addresses.group_id')
+                        ->select('groups.id', 'groups.name', DB::raw("count(*) as count"))
+                        ->groupBy('groups.id')
+                        ->get();
 
         return view('group.create', [
             'groups' => $groups,
-            'groups_add_count' => $groups_add_count
         ]);
     }
 
