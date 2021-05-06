@@ -15,7 +15,7 @@ class GroupController extends Controller
 
         $groups = DB::table('groups')
                         ->leftJoin('addresses', 'groups.id', '=', 'addresses.group_id')
-                        ->select('groups.id', 'groups.name', DB::raw("count(*) as count"))
+                        ->select('groups.id', 'groups.name', DB::raw("count(addresses.group_id) as count"))
                         ->groupBy('groups.id')
                         ->get();
 
