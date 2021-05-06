@@ -72,9 +72,8 @@ class MyImageController extends Controller
                     // DBへの書き換え
                     $check_image_exist->file_name = $upload_image->getClientOriginalName();
                     $check_image_exist->file_path = $path;
-            
-                    $check_image_exist->save();
 
+                    $check_image_exist->save();
                 }
             }
         }

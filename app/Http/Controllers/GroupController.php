@@ -14,18 +14,6 @@ class GroupController extends Controller
     public function create(){
 
         $groups = Group::all();
-        // $groups = Group::select('id','name','count(id)')->groupBy('id')->get()->toArray();
-        
-
-        // $groups = DB::table('addresses')
-        //     ->select(DB::raw('count(*) as count, group_id'))
-        //     // ->where('status', '<>', 1)
-        //     ->groupBy('group_id')
-        //     ->get();
-        // dd($groups);
-
-        // $groups = Group::get()->toArray();
-
         
         $groups_add_count = array();
 
@@ -34,11 +22,6 @@ class GroupController extends Controller
             $group_count = Address::where('group_id', $group["id"])->count();
             
             $groups_add_count[$group["id"]] = $group_count;
-            // $array1 = array('group_count' => $group_count);
-
-            // $group->concat(['group_count' => $group_count]);
-            // array_merge($groups_add_count, $array1);
-            
         }
 
         return view('group.create', [

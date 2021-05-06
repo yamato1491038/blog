@@ -5,10 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-use kanazaca\CounterCache\CounterCache;
-
-class Like extends Model
-{
+class Like extends Model{
 
     protected $fillable = ["user_id", "address_id"];
 
@@ -19,5 +16,4 @@ class Like extends Model
     public function address(){
         return $this->belongsTo(Address::class);
     }
-
 }

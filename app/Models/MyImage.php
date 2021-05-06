@@ -5,8 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class MyImage extends Model
-{
+class MyImage extends Model{
+
     use HasFactory;
 
     protected $table = "my_images";
@@ -15,5 +15,4 @@ class MyImage extends Model
     public function user(){
         return $this->hasOne('App\Models\User');
     }
-
 }

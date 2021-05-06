@@ -20,8 +20,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-// Route::resources(['address' => AddressController::class]);
-
 Route::group(['middleware' => ['auth']], function(){
     Route::get('/', 'App\Http\Controllers\AddressController@index')->name('address.index');
     Route::get('/address/index', 'App\Http\Controllers\AddressController@index')->name('address.index');
@@ -37,9 +35,6 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/my_image/show', 'App\Http\Controllers\MyImageController@show')->name('my_image.show');
     Route::post('/my_image/upload', 'App\Http\Controllers\MyImageController@upload')->name('my_image.upload');
 
-
-
-
     Route::get('/group/create', 'App\Http\Controllers\GroupController@create')->name('group.create');
     Route::post('/group/store', 'App\Http\Controllers\GroupController@store')->name('group.store');
     Route::delete('/group/destroy', 'App\Http\Controllers\GroupController@destroy')->name('group.destroy');
@@ -51,5 +46,3 @@ Route::group(['middleware' => ['auth']], function(){
 });
 
 Auth::routes();
-
-
