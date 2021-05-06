@@ -71,9 +71,6 @@ class Address extends Model
             }
 
             $q->whereIn('addresses.id', $id_array);
-            });
-        
-        
-
+        });
     }
 }
