@@ -37,6 +37,7 @@ Route::group(['middleware' => ['auth']], function(){
 
     Route::get('/group/create', 'App\Http\Controllers\GroupController@create')->name('group.create');
     Route::post('/group/store', 'App\Http\Controllers\GroupController@store')->name('group.store');
+    Route::post('/group/update/{id}', 'App\Http\Controllers\GroupController@update')->name('group.update');
     Route::delete('/group/destroy', 'App\Http\Controllers\GroupController@destroy')->name('group.destroy');
 
     Route::post('/like/store', 'App\Http\Controllers\LikeController@store')->name('like.store');

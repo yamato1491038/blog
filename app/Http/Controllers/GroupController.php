@@ -35,6 +35,17 @@ class GroupController extends Controller
         return redirect('group/create');
     }
 
+
+    public function update(Request $request, $id){
+
+        $group = Group::find($id);
+
+        $group->name = $request->input('name');
+        $group->save();
+
+        return redirect('group/create');
+    }
+
     public function destroy(Request $request){
 
         $group = Group::find($request->input('id'));

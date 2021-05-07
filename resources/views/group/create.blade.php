@@ -14,7 +14,7 @@
     <div class="row justify-content-center">
       <div class="col-md-6">
         <div class="card">
-          <div class="card-header">グループ登録</div>
+          <div class="card-header">グループ新規登録</div>
           <div class='card-body'>
             <form method="POST" action="{{ route('group.store') }}">
               @csrf
@@ -50,7 +50,28 @@
                   <td>{{ $group->count }}</td>
                 <td>
                   <div class="button-contents">
-                    <button type="button" class="btn btn-secondary btn-sm">修正</button>
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $group->id }}">修正</button>
+                    <div class="modal fade" id="exampleModal{{ $group->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">グループ名修正</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            <form method="POST" action="{{ route('group.update', ['id' => $group->id]) }}">
+                              @csrf
+                              <input type="text" class="form-control" id="" name="name" value="{{ $group->name }}" required>
+                          </div>
+                          <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">戻る</button>
+                              <input class="btn btn-info" type="submit" name="btn_confirm" value="変更">
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
                     <form action="{{route('group.destroy')}}" method="post">
                       @csrf
                       @method("delete")
