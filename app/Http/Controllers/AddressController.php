@@ -99,10 +99,24 @@ class AddressController extends Controller
         $prefs = config('pref');
         $groups = Group::all();
 
+        // APIへアクセスし該当都道府県の市区情報取得
+        $num = "0" . $address->prefecture;
+        $prefecture_id = substr($num, -2);
+        $url = 'https://www.land.mlit.go.jp/webland/api/CitySearch?area=' . $prefecture_id;
+
+        $client = new \GuzzleHttp\Client();
+        $response = $client->request('GET', $url);
+
+        $cities_json = $response->getBody()->getContents();
+        // JSONをstdClassのオブジェクト型に変換
+        $cities = json_decode( $cities_json , false )->data;
+
+
         return view('address.show', [
             'address' => $address,
             'prefs' => $prefs,
-            'groups' => $groups
+            'groups' => $groups,
+            'cities' => $cities
             ]);
     }
 

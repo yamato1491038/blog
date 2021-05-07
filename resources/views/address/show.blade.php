@@ -8,6 +8,11 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
+
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="{{ asset('/js/search.js') }}"></script>
+    <script src="{{ asset('/js/prefecture.js') }}"></script>
   
   </head>
   <body>
@@ -20,8 +25,8 @@
               <form method="POST" action="{{ route('address.update', ['id' => $address->id]) }}">
                 @csrf
                 <div class="mb-3">
-                <label for="name" class="form-label">氏名</label>
-                <input type="text" class="form-control" id="name" name="name" value="{{ $address->name }}" required>
+                <label for="name" class="form-label name-label">氏名</label>
+                <input type="text" class="form-control" id="name-input" name="name" value="{{ $address->name }}" required>
                 </div>
 
                 <div class="mb-3">
@@ -31,7 +36,7 @@
 
                 <div class="mb-3">
                   <label for="prefecture" class="form-label">都道府県</label>
-                    <select class="form-select" name="prefecture">
+                    <select class="form-select" id="prefecture-select-show" name="prefecture">
                       @foreach($prefs as $index => $name)
                         @if ($index == $address->prefecture)
                           <option value="{{ $index }}" selected>{{$name}}</option>
@@ -43,8 +48,16 @@
                 </div>
 
                 <div class="mb-3">
-                  <label for="city" class="form-label">市・町</label>
-                  <input type="text"  class="form-control" id="city" name="city" value="{{ $address->city }}" >
+                  <label for="city" class="form-label">都道府県</label>
+                    <select class="form-select city-select" id="city-select-show" name="city">
+                      @foreach($cities as $city)
+                        @if ($city->name == $address->city)
+                          <option value="{{ $city->name }}" class="city-option" selected>{{ $city->name }}</option>
+                        @else
+                          <option value="{{ $city->name }}" class="city-option">{{ $city->name }}</option>
+                        @endif
+                      @endforeach
+                    </select>
                 </div>
 
                 <div class="mb-3">

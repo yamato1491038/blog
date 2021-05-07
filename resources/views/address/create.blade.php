@@ -40,8 +40,8 @@
                 </div>
 
                 <div class="mb-3">
-                <label for="zip_code" class="form-label">郵便番号</label>
-                <input type="text"  class="form-control" id="" name="zip_code" value="" required>
+                  <label for="zip_code" class="form-label">郵便番号</label>
+                  <input type="text"  class="form-control" id="" name="zip_code" value="" required>
                 </div>
 
                 <div class="mb-3">
@@ -56,7 +56,7 @@
 
                 <div class="mb-3">
                   <label for="city" class="city-label">市・区</label>
-                  <select  class="form-select" id="city-select" name="city">
+                  <select  class="form-select city-select" name="city">
                   </select>
                 </div>
 

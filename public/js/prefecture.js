@@ -13,7 +13,7 @@ $(function(){
   function appendCity(insertHTML){
     let html = `<option value="" class="city-option">選択してください</option>
                   ${insertHTML}`
-    $('#city-select').append(html);
+    $('.city-select').append(html);
   }
 
   $(document).on('change', '#prefecture-select',function(){
@@ -24,6 +24,25 @@ $(function(){
     // 国土交通省の住所取得API
     const url = "https://www.land.mlit.go.jp/webland/api/CitySearch?area=" + prefId;
 
+    $.getJSON(url, function(json){
+
+      let cities = json.data;
+      let insertHTML = '';
+      cities.forEach(function(city){
+          insertHTML += appendOption(city);
+      });
+      $('.city-option').remove();
+      appendCity(insertHTML);
+    })
+  });
+
+  $(document).on('change', '#prefecture-select-show',function(){
+    
+    const selectedPref = document.getElementById('prefecture-select-show').value;
+    const prefId = getTwoDigitsNumber(selectedPref)
+
+    // 国土交通省の住所取得API
+    const url = "https://www.land.mlit.go.jp/webland/api/CitySearch?area=" + prefId;
     $.getJSON(url, function(json){
 
       let cities = json.data;
