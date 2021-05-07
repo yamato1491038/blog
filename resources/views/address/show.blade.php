@@ -7,7 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
   
   </head>
   <body>
@@ -69,13 +69,20 @@
                       @endforeach
                     </select>
                   </div>
-                <input class="btn btn-info" type="submit" name="btn_confirm" value="編集">
-              </form>
-              <form action="{{ route('address.destroy',['id' => $address->id])}}" method="post">
-                @csrf
-                @method("delete")
-                <input type="submit" value="削除" class="btn btn-danger" onclick='return confirm("削除しますか？");'>
-              </form>
+                  <div class="address-show-down-container">
+                    <div class="address-show-down-left">
+                      <input class="btn btn-info" type="submit" name="btn_confirm" value="編集">
+                      </form>
+                      <a href="{{ route('address.index') }}" class="btn btn-secondary" role="button">戻る</a>
+                    </div>
+                    <div class="address-show-down-right">
+                      <form action="{{ route('address.destroy',['id' => $address->id])}}" method="post">
+                        @csrf
+                        @method("delete")
+                        <input type="submit" value="削除" class="btn btn-danger" onclick='return confirm("削除しますか？");'>
+                      </form>
+                    </div>
+                </div>
             </div>
           </div>
         </div><!-- .col-md-6 --> 

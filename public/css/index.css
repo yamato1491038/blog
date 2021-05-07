@@ -27,3 +27,8 @@
 .index-bottom-btn{
   margin-right: 30px;
 }
+
+.address-show-down-container{
+  display: flex;
+  justify-content: space-between;
+}
