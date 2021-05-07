@@ -151,7 +151,12 @@ class AddressController extends Controller
     public function nameSearch(Request $request){
 
         $name = $request->keyword;
-        $result = Address::where('name', 'LIKE', $name . '%')->first();
+        $my_name = $request->my_name;
+        
+        $result = "";
+        if ($name != $my_name){
+        $result = Address::where('name', $name)->first();
+        }
 
         return response()->json(["result"=> $result]);
     }

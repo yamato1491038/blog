@@ -36,7 +36,7 @@
                 @csrf
                 <div class="mb-3">
                   <label for="name" class="form-label name-label">氏名</label>
-                  <input type="text" class="form-control" id="name-input" name="name" value="" required>
+                  <input type="text" class="form-control name-input" name="name" value="" required>
                 </div>
 
                 <div class="mb-3">
@@ -80,7 +80,7 @@
                     </select>
                 </div>
 
-                <input class="btn btn-info" type="submit" name="btn_confirm" value="登録する" id="submit_btn">
+                <input class="btn btn-info submit_active" type="submit" name="btn_confirm" value="登録する" >
                 <a href="{{ route('address.index') }}" class="btn btn-secondary" role="button">戻る</a>
               </form>
           </div>
