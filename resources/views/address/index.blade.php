@@ -85,7 +85,12 @@
 
           <div class="mb-2">
             <label for="address" class="block mb-2 font-bold">住所：</label>
-            <input type="text" name="prefecture" id="address" class="appearance-none border rounded w-full py-2 px-3 mb-2" placeholder="都道府県">
+              <select  class="form-select py-2 px-3 mb-2" id="prefecture-select" name="prefecture">
+                <option value="">選択してください</option>
+                @foreach($prefs as $index => $name)
+                  <option value="{{ $index }}">{{$name}}</option>
+                @endforeach
+              </select>
             <input type="text" name="city" id="a" class="appearance-none border rounded w-full py-2 px-3 mb-2" placeholder="市">
             <input type="text" name="town" id="b" class="appearance-none border rounded w-full py-2 px-3" placeholder="町名・番地">
           </div>

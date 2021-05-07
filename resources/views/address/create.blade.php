@@ -20,7 +20,7 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-md-6">
-          <div class="card">
+          <div class="card" style="margin-top:20px;">
             <div class="card-header">情報登録</div>
             <div class='card-body'>
               @if ($errors->any())

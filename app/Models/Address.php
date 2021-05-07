@@ -44,7 +44,7 @@ class Address extends Model
             $q->where('zip_code', 'LIKE', '%' . $zip_code . '%');
         })
         ->when($request->prefecture, function($q, $prefecture) {
-            $q->where('prefecture', 'LIKE', '%' . $prefecture . '%');
+            $q->where('prefecture', $prefecture);
         })
         ->when($request->city, function($q, $city) {
             $q->where('city', 'LIKE', '%' . $city . '%');
@@ -59,7 +59,6 @@ class Address extends Model
             $q->where('group_id', 'LIKE', $group_id);
         })
         ->when($request->like, function($q) {
-
             // ライクしているaddress_idを配列にしている
             $address_ids = DB::table('likes')
                             ->select('address_id')
@@ -69,7 +68,6 @@ class Address extends Model
             foreach ($address_ids as $address_id){
                 $id_array[] = $address_id->address_id;
             }
-
             $q->whereIn('addresses.id', $id_array);
         });
     }
