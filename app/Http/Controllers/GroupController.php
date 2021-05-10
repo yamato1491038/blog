@@ -18,7 +18,6 @@ class GroupController extends Controller
                         ->select('groups.id', 'groups.name', DB::raw("count(addresses.group_id) as count"))
                         ->groupBy('groups.id')
                         ->get();
-
         return view('group.create', [
             'groups' => $groups,
         ]);
@@ -28,22 +27,18 @@ class GroupController extends Controller
     public function store(Request $request){
 
         $group = new Group;
-
         $group->name = $request->input('name');
         $group->save();
-
-        return redirect('group/create');
+        return redirect('group/create')->with('success', 'グループを新規登録しました');
     }
 
 
     public function update(Request $request, $id){
 
         $group = Group::find($id);
-
         $group->name = $request->input('name');
         $group->save();
-
-        return redirect('group/create');
+        return redirect('group/create')->with('success', 'グループ名を修正しました');
     }
 
     public function destroy(Request $request){
@@ -53,23 +48,10 @@ class GroupController extends Controller
             $group = Group::find($request->input('id'));
             $group->delete();
             DB::commit();
-
-            return redirect('group/create')->with('グループを削除しました');
-
+            return redirect('group/create')->with('success', 'グループを削除しました');
         } catch (\Exception $e) {
             DB::rollback();
-
-            return redirect('group/create')->with('delete' ,'削除できません');
+            return redirect('group/create')->with('alert' ,'使用中のグループのため削除できません');
         }
-
-
-
-
-        // DB::transaction(function () use ($request){
-        //     $group = Group::find($request->input('id'));
-        //     $group->delete();
-        // });
-
-        // return redirect('group/create');
     }
 }

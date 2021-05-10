@@ -16,14 +16,8 @@
         <div class="card" style="margin-top:20px;">
           <div class="card-header">グループ新規登録</div>
           <div class='card-body'>
-          
-            @if (session('delete'))
-                        <div class="alart ">
-                          <p>{{ session('delete') }}</p>
-                        </div>
-            @endif
 
-            {{-- @if ($errors->any())
+            @if ($errors->any())
                   <div class="alert alert-danger">
                       <ul>
                           @foreach ($errors->all() as $error)
@@ -31,7 +25,7 @@
                           @endforeach
                       </ul>
                   </div>
-              @endif --}}
+              @endif
               
             <form method="POST" action="{{ route('group.store') }}">
               @csrf
@@ -50,6 +44,18 @@
 
     <div class="row justify-content-center">
       <div class="col-md-6">
+        @if (session('alert'))
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong >{{ session('alert') }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        @endif
+        @if (session('success'))
+          <div class="alert alert alert-success alert-dismissible fade show" role="alert">
+            <strong>{{ session('success') }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        @endif
         <table class="table">
           <thead>
             <tr>
