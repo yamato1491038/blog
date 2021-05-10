@@ -16,7 +16,14 @@
         <div class="card" style="margin-top:20px;">
           <div class="card-header">グループ新規登録</div>
           <div class='card-body'>
-            @if ($errors->any())
+          
+            @if (session('delete'))
+                        <div class="alart ">
+                          <p>{{ session('delete') }}</p>
+                        </div>
+            @endif
+
+            {{-- @if ($errors->any())
                   <div class="alert alert-danger">
                       <ul>
                           @foreach ($errors->all() as $error)
@@ -24,7 +31,8 @@
                           @endforeach
                       </ul>
                   </div>
-              @endif
+              @endif --}}
+              
             <form method="POST" action="{{ route('group.store') }}">
               @csrf
               <div class="mb-3">
@@ -85,7 +93,8 @@
                       @csrf
                       @method("delete")
                       <input type="hidden" name="id" value="{{$group->id}}">
-                      <input type="submit" value="削除" class="btn btn-sm btn-danger" onclick='return confirm("削除しますか？");'>
+                      <input type="submit" value="削除" class="btn btn-sm btn-danger"  onclick='return confirm("削除しますか？");'>
+                      
                     </form>
                   </div>
                 </td>

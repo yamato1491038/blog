@@ -48,9 +48,28 @@ class GroupController extends Controller
 
     public function destroy(Request $request){
 
-        $group = Group::find($request->input('id'));
-        $group->delete();
+        DB::beginTransaction();
+        try {
+            $group = Group::find($request->input('id'));
+            $group->delete();
+            DB::commit();
 
-        return redirect('group/create');
+            return redirect('group/create')->with('グループを削除しました');
+
+        } catch (\Exception $e) {
+            DB::rollback();
+
+            return redirect('group/create')->with('delete' ,'削除できません');
+        }
+
+
+
+
+        // DB::transaction(function () use ($request){
+        //     $group = Group::find($request->input('id'));
+        //     $group->delete();
+        // });
+
+        // return redirect('group/create');
     }
 }
