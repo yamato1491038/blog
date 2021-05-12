@@ -9,3 +9,7 @@
 .notice-text{
   color: red;
 }
+
+label.error{
+  color: red;
+}

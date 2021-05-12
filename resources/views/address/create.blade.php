@@ -12,8 +12,10 @@
 
     <!-- JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
     <script src="{{ asset('/js/search.js') }}"></script>
     <script src="{{ asset('/js/prefecture.js') }}"></script>
+    <script src="{{ asset('/js/validation.js') }}"></script>
 
   </head>
   <body>
@@ -32,7 +34,7 @@
                       </ul>
                   </div>
               @endif
-              <form method="POST" action="{{ route('address.store') }}">
+              <form method="POST" action="{{ route('address.store') }}" id="form">
                 @csrf
                 <div class="mb-3">
                   <label for="name" class="form-label name-label">氏名</label>
