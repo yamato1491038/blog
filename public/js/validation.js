@@ -19,5 +19,4 @@ $(function(){
       error.insertBefore(element);
     }
   })
-
 })
