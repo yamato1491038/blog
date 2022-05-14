@@ -47,6 +47,7 @@ class MyImageController extends Controller
             if($upload_image) {
 
                 $path = $upload_image->store('uploads', "public");
+                // $path = $upload_image->store('public/uploads');
                 if($path){
                     MyImage::create([
                         "file_name" => $upload_image->getClientOriginalName(),

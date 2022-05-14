@@ -60,7 +60,7 @@
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">グループ名</th>
+              <th scope="col">グループ名や</th>
               <th scope="col">所属人数</th>
               <th scope="col">操作</th>
             </tr>

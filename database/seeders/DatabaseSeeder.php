@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(GroupSeeder::class);
+        
         \App\Models\Address::factory(50)->create();
 
         

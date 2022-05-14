@@ -20,8 +20,12 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+Route::get('/', function(){
+    return redirect('/address/index');
+});
+
 Route::group(['middleware' => ['auth']], function(){
-    Route::get('/', 'App\Http\Controllers\AddressController@index')->name('address.index');
+    // Route::get('/', 'App\Http\Controllers\AddressController@index')->name('address.index');
     Route::get('/address/index', 'App\Http\Controllers\AddressController@index')->name('address.index');
     Route::get('/address/create', 'App\Http\Controllers\AddressController@create')->name('address.create');
     Route::post('/address/store', 'App\Http\Controllers\AddressController@store')->name('address.store');

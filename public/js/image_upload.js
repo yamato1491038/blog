@@ -6,7 +6,7 @@ $(function(){
     $('.image-container').append(childHtml);
   }
 
-  // 画像選択されたら動く
+  // 画像選択
   $('#image-box').on('change', '.image-file', function(e) {
     // 選択したファイル取得
     const file = e.target.files[0];
